@@ -901,7 +901,7 @@
         }
 
         function sendOrderToWhatsApp() {
-            let message = "🍟 *DA ALOO - KITCHEN ORDER TICKET* 🍟\n\n";
+            let message = "My Order\n\n";
             message += "*Order Details:*\n";
             
             let total = 0;
@@ -920,9 +920,7 @@
             });
             
             message += `\n*Total Amount: Rs ${total}*\n\n`;
-            message += "📍 *Pickup Location:* Natole, Lalitpur\n";
-            message += "⏰ *Order Time:* " + new Date().toLocaleString() + "\n\n";
-            message += "Please confirm this order and provide estimated preparation time. Thank you!";
+            message += "Please confirm this order. Thank you!";
             
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/9779847695529?text=${encodedMessage}`;
@@ -1873,4 +1871,5 @@
     </style>
 </body>
 </html>
+
 
