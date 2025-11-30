@@ -360,7 +360,7 @@
                 console.log('Cart saved to localStorage:', cart);
             } catch (error) {
                 console.error('Error saving cart:', error);
-            // Try sessionStorage as fallback
+                // Try sessionStorage as fallback
                 sessionStorage.setItem('daAlooCart', JSON.stringify(cart));
             }
         }
@@ -723,6 +723,11 @@
             
             saveCart();
             updateCartBadge();
+            
+            // Update cart display if modal is open
+            if (document.getElementById('cartModal').style.display === 'block') {
+                updateCartDisplay();
+            }
         }
 
         function showAddFeedback(button) {
@@ -790,20 +795,16 @@
             cartItems.innerHTML = itemsHTML;
             cartTotal.textContent = `Total: Rs ${total}`;
             
-            // Setup event listeners for cart controls
+            // Setup event listeners for cart controls - FIXED
             setupCartItemControls();
         }
 
-        // Setup cart item controls with event delegation
+        // FIXED: Setup cart item controls with proper event delegation
         function setupCartItemControls() {
             const cartItems = document.getElementById('cartItems');
             
-            // Remove any existing event listeners
-            const newCartItems = cartItems.cloneNode(true);
-            cartItems.parentNode.replaceChild(newCartItems, cartItems);
-            
-            // Add event delegation
-            newCartItems.addEventListener('click', (e) => {
+            // Use event delegation on the persistent cart items container
+            cartItems.addEventListener('click', (e) => {
                 // Handle quantity buttons
                 if (e.target.classList.contains('quantity-btn') || e.target.closest('.quantity-btn')) {
                     const button = e.target.classList.contains('quantity-btn') ? e.target : e.target.closest('.quantity-btn');
@@ -826,7 +827,7 @@
                     
                     saveCart();
                     updateCartBadge();
-                    updateCartDisplay();
+                    updateCartDisplay(); // This will re-render the cart
                 }
                 
                 // Handle remove buttons
@@ -838,7 +839,7 @@
                         cart.splice(index, 1);
                         saveCart();
                         updateCartBadge();
-                        updateCartDisplay();
+                        updateCartDisplay(); // This will re-render the cart
                     }
                 }
             });
