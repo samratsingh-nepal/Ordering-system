@@ -97,7 +97,8 @@
             </div>
             <div class="customization-actions">
                 <button class="cancel-customization" id="cancelCustomization">Cancel</button>
-                <button class="add-to-cart-custom" id="addToCartCustom">Add to Cart - Rs <span id="customTotalPrice">0</span></button>
+                <button class="add-to-cart-custom" id="addToCartCustom">Add to Cart - Rs <span
+                        id="customTotalPrice">0</span></button>
             </div>
         </div>
     </div>
@@ -136,61 +137,61 @@
                 { "name": "Fried Pizza Ball", "price": 180 },
             ],
             "Spirals": [
-                { 
-                    "name": "Aloo's Spiral", 
-                    "price": 60, 
+                {
+                    "name": "Aloo's Spiral",
+                    "price": 60,
                     "extras": [
                         { "name": "Extra Sauce", "price": 20 }
                     ]
                 },
-                { 
-                    "name": "Cheesy Spiral", 
-                    "price": 80, 
+                {
+                    "name": "Cheesy Spiral",
+                    "price": 80,
                     "extras": [
                         { "name": "Extra Sauce", "price": 20 }
                     ]
                 },
-                { 
-                    "name": "Battered Spiral", 
-                    "price": 80, 
+                {
+                    "name": "Battered Spiral",
+                    "price": 80,
                     "extras": [
                         { "name": "Extra Sauce", "price": 20 }
                     ]
                 },
             ],
             "Katti Roll": [
-                { 
-                    "name": "Aloo Chat Katti Roll", 
-                    "price": 120, 
+                {
+                    "name": "Aloo Chat Katti Roll",
+                    "price": 120,
                     "extras": [
                         { "name": "Add Egg", "price": 30 }
                     ]
                 },
-                { 
-                    "name": "Spicy Buff Sausage Katti Roll", 
-                    "price": 160, 
+                {
+                    "name": "Spicy Buff Sausage Katti Roll",
+                    "price": 160,
                     "extras": [
                         { "name": "Add Egg", "price": 30 }
                     ]
                 },
-                { 
-                    "name": "Paneer Katti Roll", 
-                    "price": 160, 
+                {
+                    "name": "Paneer Katti Roll",
+                    "price": 160,
                     "extras": [
                         { "name": "Add Egg", "price": 30 }
                     ]
                 },
-                { 
-                    "name": "Tandoori Chicken Katti Roll", 
-                    "price": 180, 
+                {
+                    "name": "Tandoori Chicken Katti Roll",
+                    "price": 180,
                     "extras": [
                         { "name": "Add Egg", "price": 30 }
                     ]
                 },
             ],
             "Mo:Mo": [
-                { 
-                    "name": "Aloo Mo:Mo", 
+                {
+                    "name": "Aloo Mo:Mo",
                     "variants": [
                         { "name": "Steam", "price": 100 },
                         { "name": "Kothey", "price": 120 },
@@ -199,8 +200,8 @@
                         { "name": "Chilli", "price": 150 }
                     ]
                 },
-                { 
-                    "name": "Paneer Mo:Mo", 
+                {
+                    "name": "Paneer Mo:Mo",
                     "variants": [
                         { "name": "Steam", "price": 130 },
                         { "name": "Kothey", "price": 140 },
@@ -209,8 +210,8 @@
                         { "name": "Chilli", "price": 180 }
                     ]
                 },
-                { 
-                    "name": "Buff Mo:Mo", 
+                {
+                    "name": "Buff Mo:Mo",
                     "variants": [
                         { "name": "Steam", "price": 130 },
                         { "name": "Kothey", "price": 140 },
@@ -219,8 +220,8 @@
                         { "name": "Chilli", "price": 180 }
                     ]
                 },
-                { 
-                    "name": "Chicken Mo:Mo", 
+                {
+                    "name": "Chicken Mo:Mo",
                     "variants": [
                         { "name": "Steam", "price": 150 },
                         { "name": "Kothey", "price": 160 },
@@ -231,23 +232,23 @@
                 },
             ],
             "Burger": [
-                { 
-                    "name": "Aloo Tikki Burger", 
-                    "price": 160, 
+                {
+                    "name": "Aloo Tikki Burger",
+                    "price": 160,
                     "extras": [
                         { "name": "Add Cheese", "price": 50 }
                     ]
                 },
-                { 
-                    "name": "Chicken Burger", 
-                    "price": 220, 
+                {
+                    "name": "Chicken Burger",
+                    "price": 220,
                     "extras": [
                         { "name": "Add Cheese", "price": 50 }
                     ]
                 },
-                { 
-                    "name": "Spicy Buff Burger", 
-                    "price": 210, 
+                {
+                    "name": "Spicy Buff Burger",
+                    "price": 210,
                     "extras": [
                         { "name": "Add Cheese", "price": 50 }
                     ]
@@ -269,7 +270,7 @@
                 { "name": "Mixed Fried Rice", "price": "200" },
             ],
             "Chowmein": [
-                { "name": "Chowmein", "price": "110" },
+                { "name": "Veg Chowmein", "price": "110" },
                 { "name": "Chicken Chowmein", "price": "170" },
                 { "name": "Buff Chowmein", "price": "150" },
                 { "name": "Mixed Chowmein", "price": "190" },
@@ -406,7 +407,7 @@
                     const hasVariants = item.variants && item.variants.length > 0;
                     const hasExtras = item.extras && item.extras.length > 0;
                     const requiresCustomization = hasVariants || hasExtras;
-                    
+
                     // Display price range for variant items
                     let displayPrice = `Rs ${item.price}`;
                     if (hasVariants) {
@@ -415,7 +416,7 @@
                         const maxPrice = Math.max(...prices);
                         displayPrice = `Rs ${minPrice} - ${maxPrice}`;
                     }
-                    
+
                     itemsHTML += `
                         <div class="menu-item-card">
                             <div class="item-main-container">
@@ -434,7 +435,7 @@
                                     data-has-variants="${hasVariants}"
                                     data-has-extras="${hasExtras}">
                                 <i class="fas fa-${requiresCustomization ? 'cog' : 'plus'}"></i> 
-                                ${requiresCustomization ? 'Customize & Add' : 'Add to Cart'}
+                                ${requiresCustomization ? 'Choose Varient' : 'Add to Cart'}
                             </button>
                         </div>
                     `;
@@ -517,7 +518,7 @@
                     alert('Cart is already empty!');
                     return;
                 }
-                
+
                 if (confirm('Are you sure you want to clear your cart?')) {
                     cart = [];
                     saveCart();
@@ -557,7 +558,7 @@
                     const price = button.getAttribute('data-price');
                     const hasVariants = button.getAttribute('data-has-variants') === 'true';
                     const hasExtras = button.getAttribute('data-has-extras') === 'true';
-                    
+
                     if (hasVariants || hasExtras) {
                         openCustomizationModal(name, hasVariants, hasExtras);
                     } else {
@@ -580,14 +581,14 @@
 
             addBtn.addEventListener('click', () => {
                 if (!currentCustomizationItem) return;
-                
+
                 const selectedVariant = document.querySelector('input[name="variant"]:checked');
                 const selectedExtras = Array.from(document.querySelectorAll('input[name="extras"]:checked'))
                     .map(extra => ({
                         name: extra.value,
                         price: parseInt(extra.getAttribute('data-price'))
                     }));
-                
+
                 let variant = null;
                 if (selectedVariant) {
                     variant = {
@@ -595,7 +596,7 @@
                         price: parseInt(selectedVariant.getAttribute('data-price'))
                     };
                 }
-                
+
                 addToCart(currentCustomizationItem.name, variant ? variant.price : currentCustomizationItem.price, variant, selectedExtras);
                 closeCustomizationModal();
             });
@@ -618,7 +619,7 @@
             const totalPrice = document.getElementById('customTotalPrice');
 
             title.textContent = `Customize ${itemName}`;
-            
+
             let html = '';
             let basePrice = 0;
 
@@ -705,7 +706,7 @@
 
         function addToCart(name, price, variant, extras) {
             console.log('Adding to cart:', name, price, variant, extras);
-            
+
             const cartItem = {
                 name: name,
                 basePrice: price,
@@ -714,25 +715,25 @@
                 quantity: 1,
                 totalPrice: price + extras.reduce((sum, extra) => sum + extra.price, 0)
             };
-            
+
             // Check if identical item already exists in cart
-            const existingIndex = cart.findIndex(item => 
+            const existingIndex = cart.findIndex(item =>
                 item.name === cartItem.name &&
                 JSON.stringify(item.variant) === JSON.stringify(cartItem.variant) &&
                 JSON.stringify(item.extras) === JSON.stringify(cartItem.extras)
             );
-            
+
             if (existingIndex > -1) {
                 cart[existingIndex].quantity += 1;
-                cart[existingIndex].totalPrice = cart[existingIndex].basePrice * cart[existingIndex].quantity + 
+                cart[existingIndex].totalPrice = cart[existingIndex].basePrice * cart[existingIndex].quantity +
                     cart[existingIndex].extras.reduce((sum, extra) => sum + extra.price, 0) * cart[existingIndex].quantity;
             } else {
                 cart.push(cartItem);
             }
-            
+
             saveCart();
             updateCartBadge();
-            
+
             // Update cart display if modal is open
             const cartModal = document.getElementById('cartModal');
             if (cartModal.style.display === 'block') {
@@ -758,10 +759,10 @@
 
         function updateCartDisplay() {
             console.log('Updating cart display, current cart:', cart);
-            
+
             const cartItems = document.getElementById('cartItems');
             const cartTotal = document.getElementById('cartTotal');
-            
+
             // If cart is empty, show the empty message
             if (cart.length === 0) {
                 cartItems.innerHTML = `
@@ -772,15 +773,15 @@
                 cartTotal.textContent = 'Total: Rs 0';
                 return;
             }
-            
+
             // If cart has items, build the items HTML
             let itemsHTML = '';
             let total = 0;
-            
+
             cart.forEach((item, index) => {
                 const itemTotal = item.totalPrice;
                 total += itemTotal;
-                
+
                 let description = '';
                 if (item.variant) {
                     description += `<div class="cart-item-variant">Variant: ${item.variant.name}</div>`;
@@ -788,7 +789,7 @@
                 if (item.extras && item.extras.length > 0) {
                     description += `<div class="cart-item-extras">Extras: ${item.extras.map(extra => extra.name).join(', ')}</div>`;
                 }
-                
+
                 itemsHTML += `
                     <div class="cart-item">
                         <div class="cart-item-info">
@@ -805,10 +806,10 @@
                     </div>
                 `;
             });
-            
+
             cartItems.innerHTML = itemsHTML;
             cartTotal.textContent = `Total: Rs ${total}`;
-            
+
             console.log('Cart display updated with', cart.length, 'items');
             // Note: We do NOT re-add event listeners here anymore.
             // The listener in setupCart handles clicks via delegation.
@@ -820,35 +821,35 @@
                 const button = e.target.classList.contains('quantity-btn') ? e.target : e.target.closest('.quantity-btn');
                 const index = parseInt(button.getAttribute('data-index'));
                 const action = button.getAttribute('data-action');
-                
-                console.log('Quantity button clicked:', {index, action});
-                
+
+                console.log('Quantity button clicked:', { index, action });
+
                 if (action === 'increase') {
                     cart[index].quantity += 1;
-                    cart[index].totalPrice = cart[index].basePrice * cart[index].quantity + 
+                    cart[index].totalPrice = cart[index].basePrice * cart[index].quantity +
                         cart[index].extras.reduce((sum, extra) => sum + extra.price, 0) * cart[index].quantity;
                 } else if (action === 'decrease') {
                     if (cart[index].quantity > 1) {
                         cart[index].quantity -= 1;
-                        cart[index].totalPrice = cart[index].basePrice * cart[index].quantity + 
+                        cart[index].totalPrice = cart[index].basePrice * cart[index].quantity +
                             cart[index].extras.reduce((sum, extra) => sum + extra.price, 0) * cart[index].quantity;
                     } else {
                         cart.splice(index, 1);
                     }
                 }
-                
+
                 saveCart();
                 updateCartBadge();
                 updateCartDisplay();
             }
-            
+
             // Handle remove buttons
             if (e.target.classList.contains('remove-btn') || e.target.closest('.remove-btn')) {
                 const button = e.target.classList.contains('remove-btn') ? e.target : e.target.closest('.remove-btn');
                 const index = parseInt(button.getAttribute('data-index'));
-                
+
                 console.log('Remove button clicked:', index);
-                
+
                 if (confirm('Remove this item from cart?')) {
                     cart.splice(index, 1);
                     saveCart();
@@ -861,12 +862,12 @@
         function sendOrderToWhatsApp() {
             let message = "🍟 *DA ALOO - KITCHEN ORDER TICKET* 🍟\n\n";
             message += "*Order Details:*\n";
-            
+
             let total = 0;
             cart.forEach(item => {
                 const itemTotal = item.totalPrice;
                 total += itemTotal;
-                
+
                 message += `• ${item.quantity}x ${item.name}`;
                 if (item.variant) {
                     message += ` (${item.variant.name})`;
@@ -876,17 +877,17 @@
                 }
                 message += ` - Rs ${itemTotal}\n`;
             });
-            
+
             message += `\n*Total Amount: Rs ${total}*\n\n`;
             message += "📍 *Pickup Location:* Natole, Lalitpur\n";
             message += "⏰ *Order Time:* " + new Date().toLocaleString() + "\n\n";
             message += "Please confirm this order and provide estimated preparation time. Thank you!";
-            
+
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/9779847375984?text=${encodedMessage}`;
-            
+
             window.open(whatsappUrl, '_blank');
-            
+
             cart = [];
             saveCart();
             updateCartBadge();
@@ -1087,7 +1088,8 @@
             font-weight: 600;
         }
 
-        .variant-option, .extra-option {
+        .variant-option,
+        .extra-option {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1099,27 +1101,31 @@
             transition: all 0.3s ease;
         }
 
-        .variant-option:hover, .extra-option:hover {
+        .variant-option:hover,
+        .extra-option:hover {
             border-color: var(--primary);
             background: #fffdf0;
         }
 
-        .variant-option input:checked + .variant-name,
-        .extra-option input:checked + .extra-name {
+        .variant-option input:checked+.variant-name,
+        .extra-option input:checked+.extra-name {
             font-weight: bold;
             color: var(--secondary);
         }
 
-        .variant-option input:checked, .extra-option input:checked {
+        .variant-option input:checked,
+        .extra-option input:checked {
             background: var(--primary);
         }
 
-        .variant-name, .extra-name {
+        .variant-name,
+        .extra-name {
             flex: 1;
             font-family: 'Montserrat', sans-serif;
         }
 
-        .variant-price, .extra-price {
+        .variant-price,
+        .extra-price {
             font-weight: bold;
             color: #e74c3c;
             font-family: 'Montserrat', sans-serif;
@@ -1167,7 +1173,8 @@
         }
 
         /* Enhanced cart item display */
-        .cart-item-variant, .cart-item-extras {
+        .cart-item-variant,
+        .cart-item-extras {
             font-size: 0.8rem;
             color: #666;
             margin-top: 0.25rem;
@@ -1362,6 +1369,7 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -1804,4 +1812,5 @@
         }
     </style>
 </body>
+
 </html>
