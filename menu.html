@@ -1018,50 +1018,53 @@
             transform: translateY(0);
         }
 
-        /* Cart Container */
-        .cart-container {
-            position: fixed;
-            top: 120px;
-            right: 20px;
-            z-index: 100;
-        }
+       /* Cart Container */
+.cart-container {
+    position: fixed;
+    top: 120px;
+    right: 20px;
+    z-index: 100;
+}
 
-        .cart-icon {
-            background: #FFFFFF;
-            color: #25D366;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            transition: all 0.3s ease;
-            font-size: 1.5rem;
-        }
+.cart-icon {
+    background: #FFFFFF;              /* white background */
+    color: #000000;                   /* black icon */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #FFEB3B;        /* yellow border */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: all 0.3s ease;
+    font-size: 1.5rem;
+}
 
-        .cart-icon:hover {
-            transform: scale(1.1);
-            background: #eed118;
-        }
+.cart-icon:hover {
+    transform: scale(1.1);
+    background: #FFFFFF;              /* keep white on hover */
+}
 
-        .cart-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #FFFFFF;
-            color: #25D366;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
+/* Badge */
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #000000;              /* black badge */
+    color: #FFFFFF;                   /* white number */
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
 
         /* Customization Modal */
         .customization-modal {
@@ -1886,6 +1889,7 @@
 
 
 </html>
+
 
 
 
