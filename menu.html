@@ -909,7 +909,7 @@
     const now = new Date();
     const date = now.toLocaleDateString();
     const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    message += `📅 ${date} ${time}\n\n`;
+    message += ` ${date} ${time}\n\n`;
     
     let total = 0;
     cart.forEach(item => {
@@ -1886,6 +1886,7 @@
 
 
 </html>
+
 
 
 
