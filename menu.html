@@ -903,8 +903,9 @@
 
         function sendOrderToWhatsApp() {
             let message = "My Order\n\n";
-            message += "*Order Details:*\n";
             message += Date: ${new Date().toLocaleString()}\n\n;
+            message += "*Order Details:*\n";
+            
 
             let total = 0;
             cart.forEach(item => {
@@ -1882,5 +1883,6 @@
 
 
 </html>
+
 
 
