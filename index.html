@@ -1108,12 +1108,12 @@
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
+const badge = document.querySelector('.cart-badge');
 
-@keyframes bounce {
-    0% { transform: scale(1); }
-    30% { transform: scale(1.25); }
-    60% { transform: scale(0.9); }
-    100% { transform: scale(1); }
+if (badge) {
+    badge.classList.remove('bounce'); // reset
+    void badge.offsetWidth;           // force reflow
+    badge.classList.add('bounce');
 }
 
 
@@ -1940,6 +1940,7 @@
 
 
 </html>
+
 
 
 
