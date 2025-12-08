@@ -530,12 +530,12 @@
                     return;
                 }
 
-                if (confirm('Are you sure you want to clear your cart?')) {
+                if (confirm('Want to clear your cart?')) {
                     cart = [];
                     saveCart();
                     updateCartBadge();
                     updateCartDisplay();
-                    alert('Cart cleared successfully!');
+        
                 }
             });
 
@@ -1930,6 +1930,7 @@
 
 
 </html>
+
 
 
 
