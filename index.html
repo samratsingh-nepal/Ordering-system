@@ -1107,6 +1107,17 @@
 
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
+/* Badge bounce animation */
+.cart-badge.bounce {
+    animation: badgeBounce 0.4s ease;
+}
+
+@keyframes badgeBounce {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.4); }
+    60%  { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
 
 const badge = document.querySelector('.cart-badge');
 
@@ -1940,6 +1951,7 @@ if (badge) {
 
 
 </html>
+
 
 
 
