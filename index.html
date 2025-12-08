@@ -86,11 +86,11 @@
         </div>
     </div>
 
-    <!-- Item Customization Modal (Used ONLY for Variants like Mo:Mo types) -->
+    <!-- Item Customization Modal (Used for Variants like Mo:Mo types AND Rice/Roti Meal) -->
     <div class="customization-modal" id="customizationModal">
         <div class="customization-modal-content">
             <div class="customization-header">
-                <h3 id="customizationItemName">Select Variant</h3>
+                <h3 id="customizationItemName">Select Option</h3>
                 <span class="close-customization" id="closeCustomization">&times;</span>
             </div>
             <div class="customization-body" id="customizationBody">
@@ -291,10 +291,38 @@
                 { "name": "Cheesy Garlic Wings", "price": 350, "details": "3 pcs" },
             ],
             "Rice or Roti Meal": [
-                { "name": "Butter Chicken Curry", "price": 210, "details": "Served with Roti or Rice" },
-                { "name": "Tandoori Chicken Curry", "price": 200, "details": "Served with Roti or Rice" },
-                { "name": "Masala Paneer Curry", "price": 200, "details": "Served with Roti or Rice" },
-                { "name": "Aloo Curry", "price": 160, "details": "Served with Roti or Rice" },
+                { 
+                    "name": "Butter Chicken Curry", 
+                    "price": 210, 
+                    "serving": [
+                        { "name": "Rice", "price": 0 },
+                        { "name": "Roti", "price": 0 }
+                    ]
+                },
+                { 
+                    "name": "Tandoori Chicken Curry", 
+                    "price": 200, 
+                    "serving": [
+                        { "name": "Rice", "price": 0 },
+                        { "name": "Roti", "price": 0 }
+                    ]
+                },
+                { 
+                    "name": "Masala Paneer Curry", 
+                    "price": 200, 
+                    "serving": [
+                        { "name": "Rice", "price": 0 },
+                        { "name": "Roti", "price": 0 }
+                    ]
+                },
+                { 
+                    "name": "Aloo Curry", 
+                    "price": 160, 
+                    "serving": [
+                        { "name": "Rice", "price": 0 },
+                        { "name": "Roti", "price": 0 }
+                    ]
+                },
             ],
             "Cold Drinks": [
                 { "name": "Coke / Fanta / Sprite", "price": 70 },
@@ -405,6 +433,7 @@
                 for (const item of items) {
                     const hasVariants = item.variants && item.variants.length > 0;
                     const hasExtras = item.extras && item.extras.length > 0;
+                    const hasServing = item.serving && item.serving.length > 0;
 
                     // Display price range for variant items
                     let displayPrice = `Rs ${item.price}`;
@@ -417,7 +446,8 @@
 
                     // --- BUTTON LOGIC ---
                     // "Choose Variant" for Mo:Mo (hasVariants)
-                    // "Add to Cart" for everything else (including Katti Rolls/Burgers with extras)
+                    // "Choose Serving" for Rice or Roti Meal (hasServing)
+                    // "Add to Cart" for everything else
                     let buttonText = 'Add to Cart';
                     let buttonIcon = 'plus';
                     let btnClass = '';
@@ -425,6 +455,10 @@
                     if (hasVariants) {
                         buttonText = 'Choose Variant';
                         buttonIcon = 'list-ul';
+                        btnClass = 'customize-btn';
+                    } else if (hasServing) {
+                        buttonText = 'Choose Serving';
+                        buttonIcon = 'utensils';
                         btnClass = 'customize-btn';
                     }
 
@@ -444,6 +478,7 @@
                                     data-name="${item.name}" 
                                     data-price="${item.price}"
                                     data-has-variants="${hasVariants}"
+                                    data-has-serving="${hasServing}"
                                     data-has-extras="${hasExtras}">
                                 <i class="fas fa-${buttonIcon}"></i> 
                                 ${buttonText}
@@ -535,7 +570,6 @@
                     saveCart();
                     updateCartBadge();
                     updateCartDisplay();
-        
                 }
             });
 
@@ -569,14 +603,17 @@
                     const name = button.getAttribute('data-name');
                     const price = button.getAttribute('data-price');
                     const hasVariants = button.getAttribute('data-has-variants') === 'true';
-                    // const hasExtras = button.getAttribute('data-has-extras') === 'true'; // Used internally
+                    const hasServing = button.getAttribute('data-has-serving') === 'true';
+                    const hasExtras = button.getAttribute('data-has-extras') === 'true';
 
                     if (hasVariants) {
-                        // Open modal ONLY for Variants (Mo:Mo)
-                        openCustomizationModal(name, true, false);
+                        // Open modal for Variants (Mo:Mo)
+                        openCustomizationModal(name, 'variants');
+                    } else if (hasServing) {
+                        // Open modal for Rice or Roti Meal items
+                        openCustomizationModal(name, 'serving');
                     } else {
                         // For items with extras (Burger/Roll) or simple items (Coke)
-                        // we find the item data to see if it has potential availableExtras
                         const itemData = findMenuItem(name);
                         const availableExtras = itemData.extras || [];
 
@@ -587,7 +624,7 @@
             });
         }
 
-        // Customization modal functionality (Only for Variants now)
+        // Customization modal functionality (For Variants AND Rice/Roti Meal)
         function setupCustomizationModal() {
             const modal = document.getElementById('customizationModal');
             const closeBtn = document.getElementById('closeCustomization');
@@ -600,18 +637,34 @@
             addBtn.addEventListener('click', () => {
                 if (!currentCustomizationItem) return;
 
-                const selectedVariant = document.querySelector('input[name="variant"]:checked');
-                // Extras are no longer in this modal
-
                 let variant = null;
+                let serving = null;
+                
+                // Check for variant selection (Mo:Mo)
+                const selectedVariant = document.querySelector('input[name="variant"]:checked');
                 if (selectedVariant) {
                     variant = {
                         name: selectedVariant.value,
                         price: parseInt(selectedVariant.getAttribute('data-price'))
                     };
                 }
+                
+                // Check for serving selection (Rice or Roti)
+                const selectedServing = document.querySelector('input[name="serving"]:checked');
+                if (selectedServing) {
+                    serving = {
+                        name: selectedServing.value,
+                        price: parseInt(selectedServing.getAttribute('data-price'))
+                    };
+                }
 
-                addToCart(currentCustomizationItem.name, variant ? variant.price : currentCustomizationItem.price, variant, []);
+                // Determine price - for Rice/Roti Meal, use base price
+                let price = currentCustomizationItem.price;
+                if (variant) {
+                    price = variant.price;
+                }
+
+                addToCart(currentCustomizationItem.name, price, variant, [], serving);
                 closeCustomizationModal();
             });
 
@@ -622,7 +675,7 @@
             });
         }
 
-        function openCustomizationModal(itemName, hasVariants, hasExtras) {
+        function openCustomizationModal(itemName, type) {
             const item = findMenuItem(itemName);
             if (!item) return;
 
@@ -631,14 +684,15 @@
             const title = document.getElementById('customizationItemName');
             const body = document.getElementById('customizationBody');
             const totalPrice = document.getElementById('customTotalPrice');
-            title.style.fontSize = "20px";
-            title.textContent = `Select Variant for ${itemName}`;
-
+            
+            let modalTitle = '';
             let html = '';
             let basePrice = 0;
 
-            // Variants section
-            if (hasVariants && item.variants) {
+            if (type === 'variants') {
+                modalTitle = `Select Variant for ${itemName}`;
+                basePrice = item.variants[0].price; // Default to first variant price
+                
                 html += `<div class="customization-section">
                     <h4>Select Variant</h4>`;
                 item.variants.forEach((variant, index) => {
@@ -649,20 +703,33 @@
                             <span class="variant-price">Rs ${variant.price}</span>
                         </label>
                     `;
-                    if (index === 0) basePrice = variant.price;
                 });
                 html += `</div>`;
-            } else {
-                basePrice = item.price;
+            } else if (type === 'serving') {
+                modalTitle = `Choose Serving for ${itemName}`;
+                basePrice = item.price; // Use the base price from the item
+                
+                html += `<div class="customization-section">
+                    <h4>Choose Your Preference</h4>
+                    <p class="serving-note">Served with your choice of Rice or Roti</p>`;
+                item.serving.forEach((option, index) => {
+                    html += `
+                        <label class="serving-option">
+                            <input type="radio" name="serving" value="${option.name}" data-price="${option.price}" ${index === 0 ? 'checked' : ''}>
+                            <span class="serving-name">${option.name}</span>
+                            <span class="serving-price">${option.price === 0 ? 'No extra charge' : `+Rs ${option.price}`}</span>
+                        </label>
+                    `;
+                });
+                html += `</div>`;
             }
 
-            // Note: Extras section removed from here as they are now in the cart
-
+            title.textContent = modalTitle;
             body.innerHTML = html;
             totalPrice.textContent = basePrice;
 
             // Add event listeners for price updates
-            document.querySelectorAll('input[name="variant"]').forEach(input => {
+            document.querySelectorAll('input[name="variant"], input[name="serving"]').forEach(input => {
                 input.addEventListener('change', updateCustomizationPrice);
             });
 
@@ -679,10 +746,13 @@
             const totalPrice = document.getElementById('customTotalPrice');
             let price = 0;
 
+            // Check for variant selection
             const selectedVariant = document.querySelector('input[name="variant"]:checked');
             if (selectedVariant) {
                 price = parseInt(selectedVariant.getAttribute('data-price'));
-            } else if (currentCustomizationItem && currentCustomizationItem.price) {
+            } 
+            // For Rice/Roti Meal, use the base price (serving selection doesn't change price)
+            else if (currentCustomizationItem && currentCustomizationItem.price) {
                 price = currentCustomizationItem.price;
             }
 
@@ -697,30 +767,29 @@
             return null;
         }
 
-        // Updated addToCart to accept availableExtras
-        function addToCart(name, price, variant, extras, availableExtras = []) {
+        // Updated addToCart to accept serving option
+        function addToCart(name, price, variant, extras, serving = null, availableExtras = []) {
             console.log('Adding to cart:', name);
 
             const cartItem = {
                 name: name,
                 basePrice: price,
                 variant: variant,
-                extras: extras, // Currently selected extras
-                availableExtras: availableExtras, // Potential extras
+                serving: serving, // Added serving option for Rice/Roti Meal
+                extras: extras,
+                availableExtras: availableExtras,
                 quantity: 1,
                 totalPrice: price + extras.reduce((sum, extra) => sum + extra.price, 0)
             };
 
             // If item has potential extras (availableExtras), we DO NOT merge them automatically
-            // to allow users to have one Katti Roll with Egg and one without.
-            // If no available extras (e.g., Coke), we can merge.
-
             let existingIndex = -1;
 
             if (availableExtras.length === 0) {
                 existingIndex = cart.findIndex(item =>
                     item.name === cartItem.name &&
                     JSON.stringify(item.variant) === JSON.stringify(cartItem.variant) &&
+                    JSON.stringify(item.serving) === JSON.stringify(cartItem.serving) &&
                     JSON.stringify(item.extras) === JSON.stringify(cartItem.extras)
                 );
             }
@@ -782,6 +851,9 @@
                 let description = '';
                 if (item.variant) {
                     description += `<div class="cart-item-variant">Variant: ${item.variant.name}</div>`;
+                }
+                if (item.serving) {
+                    description += `<div class="cart-item-serving">Served with: ${item.serving.name}</div>`;
                 }
 
                 // Render Checkboxes for Extras
@@ -888,7 +960,7 @@
                 updateCartDisplay();
             }
 
-// Handle remove buttons
+            // Handle remove buttons
             if (e.target.classList.contains('remove-btn') || e.target.closest('.remove-btn')) {
                 const button = e.target.classList.contains('remove-btn') ? e.target : e.target.closest('.remove-btn');
                 const index = parseInt(button.getAttribute('data-index'));
@@ -902,31 +974,33 @@
             }
         }
 
+        function sendOrderToWhatsApp() {
+            let message = "My Order\n\n";
+            message += "*Order Details:*\n";
+            
+            // Add date and time in simple format
+            const now = new Date();
+            const date = now.toLocaleDateString();
+            const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            message += ` ${date} ${time}\n\n`;
+            
+            let total = 0;
+            cart.forEach(item => {
+                const itemTotal = item.totalPrice;
+                total += itemTotal;
 
-      function sendOrderToWhatsApp() {
-    let message = "My Order\n\n";
-    message += "*Order Details:*\n";
-    
-    // Add date and time in simple format
-    const now = new Date();
-    const date = now.toLocaleDateString();
-    const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    message += ` ${date} ${time}\n\n`;
-    
-    let total = 0;
-    cart.forEach(item => {
-        const itemTotal = item.totalPrice;
-        total += itemTotal;
-
-        message += `• ${item.quantity}x ${item.name}`;
-        if (item.variant) {
-            message += ` (${item.variant.name})`;
-        }
-        if (item.extras && item.extras.length > 0) {
-            message += ` - Extras: ${item.extras.map(extra => extra.name).join(', ')}`;
-        }
-        message += ` - Rs ${itemTotal}\n`;
-    });
+                message += `• ${item.quantity}x ${item.name}`;
+                if (item.variant) {
+                    message += ` (${item.variant.name})`;
+                }
+                if (item.serving) {
+                    message += ` - Served with: ${item.serving.name}`;
+                }
+                if (item.extras && item.extras.length > 0) {
+                    message += ` - Extras: ${item.extras.map(extra => extra.name).join(', ')}`;
+                }
+                message += ` - Rs ${itemTotal}\n`;
+            });
 
             message += `\n*Total Amount: Rs ${total}*\n\n`;
             message += "Please confirm this order. Thank you!";
@@ -942,6 +1016,7 @@
             updateCartDisplay();
             document.getElementById('cartModal').style.display = 'none';
         }
+
         // Fallback for missing images
         function handleTabImageError(img, categoryName) {
             img.parentElement.innerHTML = `<div style="font-size:1.5rem;color:#666;">🍽️</div>`;
@@ -1174,8 +1249,15 @@
             font-weight: 600;
         }
 
+        .serving-note {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
         .variant-option,
-        .extra-option {
+        .serving-option {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1188,30 +1270,30 @@
         }
 
         .variant-option:hover,
-        .extra-option:hover {
+        .serving-option:hover {
             border-color: var(--primary);
             background: #fffdf0;
         }
 
         .variant-option input:checked+.variant-name,
-        .extra-option input:checked+.extra-name {
+        .serving-option input:checked+.serving-name {
             font-weight: bold;
             color: var(--secondary);
         }
 
         .variant-option input:checked,
-        .extra-option input:checked {
+        .serving-option input:checked {
             background: var(--primary);
         }
 
         .variant-name,
-        .extra-name {
+        .serving-name {
             flex: 1;
             font-family: 'Montserrat', sans-serif;
         }
 
         .variant-price,
-        .extra-price {
+        .serving-price {
             font-weight: bold;
             color: #e74c3c;
             font-family: 'Montserrat', sans-serif;
@@ -1260,7 +1342,7 @@
 
         /* Enhanced cart item display */
         .cart-item-variant,
-        .cart-item-extras {
+        .cart-item-serving {
             font-size: 0.8rem;
             color: #666;
             margin-top: 0.25rem;
@@ -1270,8 +1352,8 @@
             color: #e67e22;
         }
 
-        .cart-item-extras {
-            color: #27ae60;
+        .cart-item-serving {
+            color: #2980b9;
         }
 
         /* New CSS for Checkboxes in Cart */
@@ -1930,44 +2012,3 @@
 
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
