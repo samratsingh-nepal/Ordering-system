@@ -888,19 +888,19 @@
                 updateCartDisplay();
             }
 
-           // Handle remove buttons
-if (e.target.classList.contains('remove-btn') || e.target.closest('.remove-btn')) {
-    const button = e.target.classList.contains('remove-btn')
-        ? e.target
-        : e.target.closest('.remove-btn');
+// Handle remove buttons
+            if (e.target.classList.contains('remove-btn') || e.target.closest('.remove-btn')) {
+                const button = e.target.classList.contains('remove-btn') ? e.target : e.target.closest('.remove-btn');
+                const index = parseInt(button.getAttribute('data-index'));
 
-    const index = parseInt(button.getAttribute('data-index'));
-
-    cart.splice(index, 1);
-    saveCart();
-    updateCartBadge();
-    updateCartDisplay();
-}
+                if (confirm('Remove Item?')) {
+                    cart.splice(index, 1);
+                    saveCart();
+                    updateCartBadge();
+                    updateCartDisplay();
+                }
+            }
+        }
 
 
       function sendOrderToWhatsApp() {
@@ -1930,6 +1930,7 @@ if (e.target.classList.contains('remove-btn') || e.target.closest('.remove-btn')
 
 
 </html>
+
 
 
 
