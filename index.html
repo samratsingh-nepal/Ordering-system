@@ -27,7 +27,7 @@
                         <a href="index.html" class="nav-link">Menu</a>
                         <a href="offers.html" class="nav-link">Offers</a>
                         <a href="about.html" class="nav-link">About</a>
-                        
+
                     </nav>
                 </div>
             </div>
@@ -282,7 +282,7 @@
                 { "name": "Paneer Chilly", "price": 240 },
                 { "name": "Chicken Sausage Chilly", "price": 190 },
                 { "name": "Buff Sausage Chilly", "price": 180 },
-                { "name": "Sausage", "price": "50-60", "variants": [{ "name": "Buff", "price": 50 },{ "name": "Chicken", "price": 60 }]},
+                { "name": "Sausage", "price": "50-60", "variants": [{ "name": "Buff", "price": 50 }, { "name": "Chicken", "price": 60 }] },
                 { "name": "Chicken Nuggets", "price": 250 },
             ],
             "Chicken Wings": [
@@ -291,33 +291,33 @@
                 { "name": "Cheesy Garlic Wings", "price": 350, "details": "3 pcs" },
             ],
             "Rice or Roti Meal": [
-                { 
-                    "name": "Butter Chicken Curry", 
-                    "price": 210, 
+                {
+                    "name": "Butter Chicken Curry",
+                    "price": 210,
                     "extras": [
                         { "name": "With Rice", "price": 0, "type": "radio", "group": "serving" },
                         { "name": "With Roti", "price": 0, "type": "radio", "group": "serving" }
                     ]
                 },
-                { 
-                    "name": "Tandoori Chicken Curry", 
-                    "price": 200, 
+                {
+                    "name": "Tandoori Chicken Curry",
+                    "price": 200,
                     "extras": [
                         { "name": "With Rice", "price": 0, "type": "radio", "group": "serving" },
                         { "name": "With Roti", "price": 0, "type": "radio", "group": "serving" }
                     ]
                 },
-                { 
-                    "name": "Masala Paneer Curry", 
-                    "price": 200, 
+                {
+                    "name": "Masala Paneer Curry",
+                    "price": 200,
                     "extras": [
                         { "name": "With Rice", "price": 0, "type": "radio", "group": "serving" },
                         { "name": "With Roti", "price": 0, "type": "radio", "group": "serving" }
                     ]
                 },
-                { 
-                    "name": "Aloo Curry", 
-                    "price": 160, 
+                {
+                    "name": "Aloo Curry",
+                    "price": 160,
                     "extras": [
                         { "name": "With Rice", "price": 0, "type": "radio", "group": "serving" },
                         { "name": "With Roti", "price": 0, "type": "radio", "group": "serving" }
@@ -563,7 +563,7 @@
                     saveCart();
                     updateCartBadge();
                     updateCartDisplay();
-        
+
                 }
             });
 
@@ -787,112 +787,145 @@
         }
 
         function updateCartDisplay() {
-            const cartItems = document.getElementById('cartItems');
-            const cartTotal = document.getElementById('cartTotal');
+                const cartItems = document.getElementById('cartItems');
+                const cartTotal = document.getElementById('cartTotal');
 
-            if (cart.length === 0) {
-                cartItems.innerHTML = `
-                    <div class="empty-cart-message" id="emptyCartMessage" style="display: block;">
-                        <i class="fas fa-shopping-cart"></i>
-                        <p>Your cart is empty</p>
-                    </div>`;
-                cartTotal.textContent = 'Total: Rs 0';
-                return;
-            }
-
-            let itemsHTML = '';
-            let total = 0;
-
-            cart.forEach((item, index) => {
-                const itemTotal = item.totalPrice;
-                total += itemTotal;
-
-                let description = '';
-                if (item.variant) {
-                    description += `<div class="cart-item-variant">Variant: ${item.variant.name}</div>`;
+                if (cart.length === 0) {
+                    cartItems.innerHTML = `
+            <div class="empty-cart-message" id="emptyCartMessage" style="display: block;">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+            </div>`;
+                    cartTotal.textContent = 'Total: Rs 0';
+                    return;
                 }
 
-                // Render Checkboxes for Extras
-                let extrasHTML = '';
-                if (item.availableExtras && item.availableExtras.length > 0) {
-                    extrasHTML += '<div class="cart-extras-options">';
-                    
-                    // Group extras by their group (for radio buttons)
-                    const groupedExtras = {};
-                    item.availableExtras.forEach(extra => {
-                        const group = extra.group || 'default';
-                        if (!groupedExtras[group]) {
-                            groupedExtras[group] = [];
-                        }
-                        groupedExtras[group].push(extra);
-                    });
-                    
-                    // Render each group
-                    Object.values(groupedExtras).forEach(extrasGroup => {
-                        const isRadioGroup = extrasGroup[0].type === 'radio';
-                        const groupName = extrasGroup[0].group || 'extras';
-                        
-                        extrasHTML += `<div class="extras-group ${isRadioGroup ? 'radio-group' : ''}">`;
-                        
-                        extrasGroup.forEach(opt => {
-                            // Check if this extra is already added
-                            const isChecked = item.extras.some(e => e.name === opt.name);
-                            
-                            if (isRadioGroup) {
-                                extrasHTML += `
-                                    <label class="cart-extra-label">
-                                        <input type="radio" 
-                                               class="extra-radio" 
-                                               name="extra-${index}-${groupName}"
-                                               data-index="${index}" 
-                                               data-name="${opt.name}" 
-                                               data-price="${opt.price}"
-                                               data-group="${groupName}"
-                                               ${isChecked ? 'checked' : ''}>
-                                        ${opt.name} ${opt.price > 0 ? `(+Rs ${opt.price})` : ''}
-                                    </label>
-                                `;
-                            } else {
-                                extrasHTML += `
-                                    <label class="cart-extra-label">
-                                        <input type="checkbox" 
-                                               class="extra-checkbox" 
-                                               data-index="${index}" 
-                                               data-name="${opt.name}" 
-                                               data-price="${opt.price}"
-                                               ${isChecked ? 'checked' : ''}>
-                                        ${opt.name} (+Rs ${opt.price})
-                                    </label>
-                                `;
+                let itemsHTML = '';
+                let total = 0;
+
+                cart.forEach((item, index) => {
+                    const itemTotal = item.totalPrice;
+                    total += itemTotal;
+
+                    let description = '';
+                    if (item.variant) {
+                        description += `<div class="cart-item-variant">${item.variant.name}</div>`;
+                    }
+
+                    // Check if item has serving extras (Rice or Roti)
+                    const hasServingExtras = item.availableExtras &&
+                        item.availableExtras.some(extra => extra.group === 'serving');
+
+                    // Separate serving extras from other extras
+                    let servingExtras = [];
+                    let otherExtras = [];
+
+                    if (hasServingExtras && item.extras && item.extras.length > 0) {
+                        // Find serving extras (Rice/Roti)
+                        servingExtras = item.extras.filter(extra => {
+                            const extraData = item.availableExtras.find(e => e.name === extra.name);
+                            return extraData && extraData.group === 'serving';
+                        });
+
+                        // Find other extras
+                        otherExtras = item.extras.filter(extra => {
+                            const extraData = item.availableExtras.find(e => e.name === extra.name);
+                            return !extraData || extraData.group !== 'serving';
+                        });
+                    } else if (item.extras && item.extras.length > 0) {
+                        otherExtras = item.extras;
+                    }
+
+                    // Display serving extras separately (Rice or Roti)
+                    let servingHTML = '';
+                    if (servingExtras.length > 0) {
+                        servingHTML = `<div class="cart-item-serving">${servingExtras.map(extra => extra.name).join(', ')}</div>`;
+                    }
+
+                    // Render Checkboxes for other Extras (not serving)
+                    let extrasHTML = '';
+                    if (item.availableExtras && item.availableExtras.length > 0) {
+                        extrasHTML += '<div class="cart-extras-options">';
+
+                        // Group extras by their group (for radio buttons)
+                        const groupedExtras = {};
+                        item.availableExtras.forEach(extra => {
+                            const group = extra.group || 'default';
+                            if (!groupedExtras[group]) {
+                                groupedExtras[group] = [];
                             }
+                            groupedExtras[group].push(extra);
+                        });
+
+                        // Render each group
+                        Object.values(groupedExtras).forEach(extrasGroup => {
+                            const isRadioGroup = extrasGroup[0].type === 'radio';
+                            const groupName = extrasGroup[0].group || 'extras';
+
+                            // Skip serving group - we handle it separately
+                            if (groupName === 'serving') return;
+
+                            extrasHTML += `<div class="extras-group ${isRadioGroup ? 'radio-group' : ''}">`;
+
+                            extrasGroup.forEach(opt => {
+                                // Check if this extra is already added
+                                const isChecked = otherExtras.some(e => e.name === opt.name);
+
+                                if (isRadioGroup) {
+                                    extrasHTML += `
+                            <label class="cart-extra-label">
+                                <input type="radio" 
+                                       class="extra-radio" 
+                                       name="extra-${index}-${groupName}"
+                                       data-index="${index}" 
+                                       data-name="${opt.name}" 
+                                       data-price="${opt.price}"
+                                       data-group="${groupName}"
+                                       ${isChecked ? 'checked' : ''}>
+                                ${opt.name} ${opt.price > 0 ? `(+Rs ${opt.price})` : ''}
+                            </label>
+                        `;
+                                } else {
+                                    extrasHTML += `
+                            <label class="cart-extra-label">
+                                <input type="checkbox" 
+                                       class="extra-checkbox" 
+                                       data-index="${index}" 
+                                       data-name="${opt.name}" 
+                                       data-price="${opt.price}"
+                                       ${isChecked ? 'checked' : ''}>
+                                ${opt.name} (+Rs ${opt.price})
+                            </label>
+                        `;
+                                }
+                            });
+                            extrasHTML += '</div>';
                         });
                         extrasHTML += '</div>';
-                    });
-                    
-                    extrasHTML += '</div>';
-                }
+                    }
 
-                itemsHTML += `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <div class="cart-item-name">${item.name} × ${item.quantity}</div>
-                            ${description}
-                            ${extrasHTML}
-                            <div class="cart-item-price">Rs ${itemTotal}</div>
-                        </div>
-                        <div class="cart-item-controls">
-                            <button class="quantity-btn" data-index="${index}" data-action="decrease">-</button>
-                            <span class="quantity-display">${item.quantity}</span>
-                            <button class="quantity-btn" data-index="${index}" data-action="increase">+</button>
-                            <button class="remove-btn" data-index="${index}"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                `;
-            });
+                    itemsHTML += `
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <div class="cart-item-name">${item.name} × ${item.quantity}</div>
+                    ${description}
+                    ${servingHTML}
+                    ${extrasHTML}
+                    <div class="cart-item-price">Rs ${itemTotal}</div>
+                </div>
+                <div class="cart-item-controls">
+                    <button class="quantity-btn" data-index="${index}" data-action="decrease">-</button>
+                    <span class="quantity-display">${item.quantity}</span>
+                    <button class="quantity-btn" data-index="${index}" data-action="increase">+</button>
+                    <button class="remove-btn" data-index="${index}"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+        `;
+                });
 
-            cartItems.innerHTML = itemsHTML;
-            cartTotal.textContent = `Total: Rs ${total}`;
-        }
+                cartItems.innerHTML = itemsHTML;
+                cartTotal.textContent = `Total: Rs ${total}`;
+            }
 
         // Handle checkbox and radio changes in cart
         function handleCartItemChange(e) {
@@ -919,28 +952,28 @@
                 saveCart();
                 updateCartDisplay();
             }
-            
+
             if (e.target.classList.contains('extra-radio')) {
                 const index = parseInt(e.target.getAttribute('data-index'));
                 const name = e.target.getAttribute('data-name');
                 const price = parseInt(e.target.getAttribute('data-price'));
                 const group = e.target.getAttribute('data-group');
-                
+
                 // Remove all extras from the same radio group
                 const item = cart[index];
                 const extrasInGroup = item.availableExtras.filter(extra => extra.group === group);
-                
+
                 // Clear all extras from this group
                 item.extras = item.extras.filter(extra => {
                     const extraData = item.availableExtras.find(e => e.name === extra.name);
                     return !extraData || extraData.group !== group;
                 });
-                
+
                 // Add the selected radio extra
                 if (!item.extras.some(extra => extra.name === name)) {
                     item.extras.push({ name: name, price: price });
                 }
-                
+
                 // Recalculate price: (Base + Sum of Extras) * Quantity
                 const extrasTotal = item.extras.reduce((sum, extra) => sum + extra.price, 0);
                 item.totalPrice = (item.basePrice + extrasTotal) * item.quantity;
@@ -982,7 +1015,7 @@
                 updateCartDisplay();
             }
 
-// Handle remove buttons
+            // Handle remove buttons
             if (e.target.classList.contains('remove-btn') || e.target.closest('.remove-btn')) {
                 const button = e.target.classList.contains('remove-btn') ? e.target : e.target.closest('.remove-btn');
                 const index = parseInt(button.getAttribute('data-index'));
@@ -997,30 +1030,30 @@
         }
 
 
-      function sendOrderToWhatsApp() {
-    let message = "My Order\n\n";
-    message += "*Order Details:*\n";
-    
-    // Add date and time in simple format
-    const now = new Date();
-    const date = now.toLocaleDateString();
-    const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    message += ` ${date} ${time}\n\n`;
-    
-    let total = 0;
-    cart.forEach(item => {
-        const itemTotal = item.totalPrice;
-        total += itemTotal;
+        function sendOrderToWhatsApp() {
+            let message = "My Order\n\n";
+            message += "*Order Details:*\n";
 
-        message += `• ${item.quantity}x ${item.name}`;
-        if (item.variant) {
-            message += ` (${item.variant.name})`;
-        }
-        if (item.extras && item.extras.length > 0) {
-            message += ` - Extras: ${item.extras.map(extra => extra.name).join(', ')}`;
-        }
-        message += ` - Rs ${itemTotal}\n`;
-    });
+            // Add date and time in simple format
+            const now = new Date();
+            const date = now.toLocaleDateString();
+            const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            message += ` ${date} ${time}\n\n`;
+
+            let total = 0;
+            cart.forEach(item => {
+                const itemTotal = item.totalPrice;
+                total += itemTotal;
+
+                message += `• ${item.quantity}x ${item.name}`;
+                if (item.variant) {
+                    message += ` (${item.variant.name})`;
+                }
+                if (item.extras && item.extras.length > 0) {
+                    message += ` - Extras: ${item.extras.map(extra => extra.name).join(', ')}`;
+                }
+                message += ` - Rs ${itemTotal}\n`;
+            });
 
             message += `\n*Total Amount: Rs ${total}*\n\n`;
             message += "Please confirm this order. Thank you!";
@@ -1114,91 +1147,104 @@
             transform: translateY(0);
         }
 
-       /* Cart Container */
-/* Cart container */
-.cart-container {
-    position: fixed;
-    top: 120px;
-    right: 20px;
-    z-index: 999;
-}
+        /* Cart Container */
+        /* Cart container */
+        .cart-container {
+            position: fixed;
+            top: 120px;
+            right: 20px;
+            z-index: 999;
+        }
 
-/* Cart Icon */
-.cart-icon {
-    background: #FFFFFF;
-    color: #000000;
-    width: 64px;
-    height: 64px;
-    border-radius: 14px;
-    border: 3px solid #35E539;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    position: relative;
-    font-size: 1.7rem;
+        /* Cart Icon */
+        .cart-icon {
+            background: #FFFFFF;
+            color: #000000;
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            border: 3px solid #35E539;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            font-size: 1.7rem;
 
-    box-shadow:
-        0 6px 20px rgba(0, 0, 0, 0.25),
-        0 0 0 6px rgba(255, 235, 59, 0.35);
+            box-shadow:
+                0 6px 20px rgba(0, 0, 0, 0.25),
+                0 0 0 6px rgba(255, 235, 59, 0.35);
 
-    transition: 0.25s ease;
-    animation: cartPulse 2s infinite;
-}
+            transition: 0.25s ease;
+            animation: cartPulse 2s infinite;
+        }
 
-/* Hover */
-.cart-icon:hover {
-    transform: scale(1.12);
-}
+        /* Hover */
+        .cart-icon:hover {
+            transform: scale(1.12);
+        }
 
-/* Cart pulse */
-@keyframes cartPulse {
-    0% {
-        box-shadow:
-            0 0 0 0 rgba(255, 235, 59, 0.6),
-            0 6px 20px rgba(0, 0, 0, 0.25);
-    }
-    70% {
-        box-shadow:
-            0 0 0 12px rgba(255, 235, 59, 0),
-            0 6px 20px rgba(0, 0, 0, 0.25);
-    }
-    100% {
-        box-shadow:
-            0 0 0 0 rgba(255, 235, 59, 0),
-            0 6px 20px rgba(0, 0, 0, 0.25);
-    }
-}
+        /* Cart pulse */
+        @keyframes cartPulse {
+            0% {
+                box-shadow:
+                    0 0 0 0 rgba(255, 235, 59, 0.6),
+                    0 6px 20px rgba(0, 0, 0, 0.25);
+            }
 
-/* Badge */
-.cart-badge {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: #35E539;
-    color: #000000;
-    width: 26px;
-    height: 26px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem;
-    font-weight: bold;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-}
+            70% {
+                box-shadow:
+                    0 0 0 12px rgba(255, 235, 59, 0),
+                    0 6px 20px rgba(0, 0, 0, 0.25);
+            }
 
-/* Badge bounce */
-.cart-badge.bounce {
-    animation: badgeBounce 0.4s ease;
-}
+            100% {
+                box-shadow:
+                    0 0 0 0 rgba(255, 235, 59, 0),
+                    0 6px 20px rgba(0, 0, 0, 0.25);
+            }
+        }
 
-@keyframes badgeBounce {
-    0%   { transform: scale(1); }
-    30%  { transform: scale(1.4); }
-    60%  { transform: scale(0.9); }
-    100% { transform: scale(1); }
-}
+        /* Badge */
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #35E539;
+            color: #000000;
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Badge bounce */
+        .cart-badge.bounce {
+            animation: badgeBounce 0.4s ease;
+        }
+
+        @keyframes badgeBounce {
+            0% {
+                transform: scale(1);
+            }
+
+            30% {
+                transform: scale(1.4);
+            }
+
+            60% {
+                transform: scale(0.9);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
 
         /* Customization Modal */
         .customization-modal {
