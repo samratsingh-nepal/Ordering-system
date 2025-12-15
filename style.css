@@ -95,7 +95,7 @@ body {
     color: var(--secondary);
     font-size: 0.9rem;
     margin-top: 5px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Paytone One', sans-serif;
 }
 
 /* Navigation Styles */
@@ -574,4 +574,5 @@ body {
         height: 20px;
     }
 }
+
 
