@@ -81,7 +81,7 @@
             </div>
             <div class="cart-actions">
                 <button class="clear-cart-btn" id="clearCart">Clear Cart</button>
-            <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+                <button class="checkout-btn" id="checkoutBtn">Checkout on WhatsApp</button>
             </div>
         </div>
     </div>
@@ -568,14 +568,13 @@
             });
 
             // Checkout
-           checkoutBtn.addEventListener('click', () => {
+            checkoutBtn.addEventListener('click', () => {
                 if (cart.length === 0) {
                     alert('Your cart is empty!');
                     return;
                 }
-                 localStorage.setItem('daAlooCart', JSON.stringify(cart));
-               window.location.href = 'checkout.html';
-           })
+                sendOrderToWhatsApp();
+            });
 
             // Close modal when clicking outside
             window.addEventListener('click', (e) => {
@@ -788,145 +787,112 @@
         }
 
         function updateCartDisplay() {
-                const cartItems = document.getElementById('cartItems');
-                const cartTotal = document.getElementById('cartTotal');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
 
-                if (cart.length === 0) {
-                    cartItems.innerHTML = `
-            <div class="empty-cart-message" id="emptyCartMessage" style="display: block;">
-                <i class="fas fa-shopping-cart"></i>
-                <p>Your cart is empty</p>
-            </div>`;
-                    cartTotal.textContent = 'Total: Rs 0';
-                    return;
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart-message" id="emptyCartMessage" style="display: block;">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Your cart is empty</p>
+                    </div>`;
+                cartTotal.textContent = 'Total: Rs 0';
+                return;
+            }
+
+            let itemsHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const itemTotal = item.totalPrice;
+                total += itemTotal;
+
+                let description = '';
+                if (item.variant) {
+                    description += `<div class="cart-item-variant">Variant: ${item.variant.name}</div>`;
                 }
 
-                let itemsHTML = '';
-                let total = 0;
+                // Render Checkboxes for Extras
+                let extrasHTML = '';
+                if (item.availableExtras && item.availableExtras.length > 0) {
+                    extrasHTML += '<div class="cart-extras-options">';
 
-                cart.forEach((item, index) => {
-                    const itemTotal = item.totalPrice;
-                    total += itemTotal;
+                    // Group extras by their group (for radio buttons)
+                    const groupedExtras = {};
+                    item.availableExtras.forEach(extra => {
+                        const group = extra.group || 'default';
+                        if (!groupedExtras[group]) {
+                            groupedExtras[group] = [];
+                        }
+                        groupedExtras[group].push(extra);
+                    });
 
-                    let description = '';
-                    if (item.variant) {
-                        description += `<div class="cart-item-variant">${item.variant.name}</div>`;
-                    }
+                    // Render each group
+                    Object.values(groupedExtras).forEach(extrasGroup => {
+                        const isRadioGroup = extrasGroup[0].type === 'radio';
+                        const groupName = extrasGroup[0].group || 'extras';
 
-                    // Check if item has serving extras (Rice or Roti)
-                    const hasServingExtras = item.availableExtras &&
-                        item.availableExtras.some(extra => extra.group === 'serving');
+                        extrasHTML += `<div class="extras-group ${isRadioGroup ? 'radio-group' : ''}">`;
 
-                    // Separate serving extras from other extras
-                    let servingExtras = [];
-                    let otherExtras = [];
+                        extrasGroup.forEach(opt => {
+                            // Check if this extra is already added
+                            const isChecked = item.extras.some(e => e.name === opt.name);
 
-                    if (hasServingExtras && item.extras && item.extras.length > 0) {
-                        // Find serving extras (Rice/Roti)
-                        servingExtras = item.extras.filter(extra => {
-                            const extraData = item.availableExtras.find(e => e.name === extra.name);
-                            return extraData && extraData.group === 'serving';
-                        });
-
-                        // Find other extras
-                        otherExtras = item.extras.filter(extra => {
-                            const extraData = item.availableExtras.find(e => e.name === extra.name);
-                            return !extraData || extraData.group !== 'serving';
-                        });
-                    } else if (item.extras && item.extras.length > 0) {
-                        otherExtras = item.extras;
-                    }
-
-                    // Display serving extras separately (Rice or Roti)
-                    let servingHTML = '';
-                    if (servingExtras.length > 0) {
-                        servingHTML = `<div class="cart-item-serving">${servingExtras.map(extra => extra.name).join(', ')}</div>`;
-                    }
-
-                    // Render Checkboxes for other Extras (not serving)
-                    let extrasHTML = '';
-                    if (item.availableExtras && item.availableExtras.length > 0) {
-                        extrasHTML += '<div class="cart-extras-options">';
-
-                        // Group extras by their group (for radio buttons)
-                        const groupedExtras = {};
-                        item.availableExtras.forEach(extra => {
-                            const group = extra.group || 'default';
-                            if (!groupedExtras[group]) {
-                                groupedExtras[group] = [];
+                            if (isRadioGroup) {
+                                extrasHTML += `
+                                    <label class="cart-extra-label">
+                                        <input type="radio" 
+                                               class="extra-radio" 
+                                               name="extra-${index}-${groupName}"
+                                               data-index="${index}" 
+                                               data-name="${opt.name}" 
+                                               data-price="${opt.price}"
+                                               data-group="${groupName}"
+                                               ${isChecked ? 'checked' : ''}>
+                                        ${opt.name} ${opt.price > 0 ? `(+Rs ${opt.price})` : ''}
+                                    </label>
+                                `;
+                            } else {
+                                extrasHTML += `
+                                    <label class="cart-extra-label">
+                                        <input type="checkbox" 
+                                               class="extra-checkbox" 
+                                               data-index="${index}" 
+                                               data-name="${opt.name}" 
+                                               data-price="${opt.price}"
+                                               ${isChecked ? 'checked' : ''}>
+                                        ${opt.name} (+Rs ${opt.price})
+                                    </label>
+                                `;
                             }
-                            groupedExtras[group].push(extra);
-                        });
-
-                        // Render each group
-                        Object.values(groupedExtras).forEach(extrasGroup => {
-                            const isRadioGroup = extrasGroup[0].type === 'radio';
-                            const groupName = extrasGroup[0].group || 'extras';
-
-                            // Skip serving group - we handle it separately
-                            if (groupName === 'serving') return;
-
-                            extrasHTML += `<div class="extras-group ${isRadioGroup ? 'radio-group' : ''}">`;
-
-                            extrasGroup.forEach(opt => {
-                                // Check if this extra is already added
-                                const isChecked = otherExtras.some(e => e.name === opt.name);
-
-                                if (isRadioGroup) {
-                                    extrasHTML += `
-                            <label class="cart-extra-label">
-                                <input type="radio" 
-                                       class="extra-radio" 
-                                       name="extra-${index}-${groupName}"
-                                       data-index="${index}" 
-                                       data-name="${opt.name}" 
-                                       data-price="${opt.price}"
-                                       data-group="${groupName}"
-                                       ${isChecked ? 'checked' : ''}>
-                                ${opt.name} ${opt.price > 0 ? `(+Rs ${opt.price})` : ''}
-                            </label>
-                        `;
-                                } else {
-                                    extrasHTML += `
-                            <label class="cart-extra-label">
-                                <input type="checkbox" 
-                                       class="extra-checkbox" 
-                                       data-index="${index}" 
-                                       data-name="${opt.name}" 
-                                       data-price="${opt.price}"
-                                       ${isChecked ? 'checked' : ''}>
-                                ${opt.name} (+Rs ${opt.price})
-                            </label>
-                        `;
-                                }
-                            });
-                            extrasHTML += '</div>';
                         });
                         extrasHTML += '</div>';
-                    }
+                    });
 
-                    itemsHTML += `
-            <div class="cart-item">
-                <div class="cart-item-info">
-                    <div class="cart-item-name">${item.name} × ${item.quantity}</div>
-                    ${description}
-                    ${servingHTML}
-                    ${extrasHTML}
-                    <div class="cart-item-price">Rs ${itemTotal}</div>
-                </div>
-                <div class="cart-item-controls">
-                    <button class="quantity-btn" data-index="${index}" data-action="decrease">-</button>
-                    <span class="quantity-display">${item.quantity}</span>
-                    <button class="quantity-btn" data-index="${index}" data-action="increase">+</button>
-                    <button class="remove-btn" data-index="${index}"><i class="fas fa-trash"></i></button>
-                </div>
-            </div>
-        `;
-                });
+                    extrasHTML += '</div>';
+                }
 
-                cartItems.innerHTML = itemsHTML;
-                cartTotal.textContent = `Total: Rs ${total}`;
-            }
+                itemsHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name} × ${item.quantity}</div>
+                            ${description}
+                            ${extrasHTML}
+                            <div class="cart-item-price">Rs ${itemTotal}</div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="quantity-btn" data-index="${index}" data-action="decrease">-</button>
+                            <span class="quantity-display">${item.quantity}</span>
+                            <button class="quantity-btn" data-index="${index}" data-action="increase">+</button>
+                            <button class="remove-btn" data-index="${index}"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartItems.innerHTML = itemsHTML;
+            cartTotal.textContent = `Total: Rs ${total}`;
+        }
 
         // Handle checkbox and radio changes in cart
         function handleCartItemChange(e) {
@@ -1406,12 +1372,6 @@
             color: #666;
             margin-top: 0.25rem;
         }
-        .cart-item-serving {
-    font-size: 0.85rem;
-    color: #3498db;
-    margin-top: 4px;
-    font-weight: 500;
-}
 
         .cart-item-variant {
             color: #e67e22;
