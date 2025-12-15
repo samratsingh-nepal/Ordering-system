@@ -247,7 +247,8 @@ body {
     }
 }
 
-/* Tablet/Desktop (min-width: 768px) - HORIZONTAL/SPLIT LAYOUT */
+
+/* Tablet/Desktop (min-width: 768px) - HORIZONTAL/SPLIT LAYOUT with PUSHED-DOWN NAV */
 /* Tablet/Desktop (min-width: 768px) - HORIZONTAL/SPLIT LAYOUT with PUSHED-DOWN NAV */
 @media (min-width: 768px) {
     .site-header {
@@ -259,8 +260,6 @@ body {
         display: flex; 
         flex-direction: row; 
         justify-content: space-between; 
-        
-        /* CRITICAL CHANGE: Align to the top so we can push the nav down */
         align-items: flex-start;
         gap: 20px; 
     }
@@ -272,7 +271,7 @@ body {
         gap: 0; 
     }
 
-    /* Logo Container - Increased Min-width for larger content */
+    /* Logo Container styles remain the same */
     .logo-container {
         padding: 8px 40px;
         display: flex; 
@@ -284,7 +283,6 @@ body {
         margin-right: 0;
     }
     
-    /* Logo Image - INCREASED SIZE (Desktop) */
     .main-logo {
         width: 210px;
         height: 105px;
@@ -297,7 +295,7 @@ body {
         margin-left: 0;
     }
 
-    /* Navigation - CRITICAL CHANGE: Push down below the logo box */
+    /* Navigation - CRITICAL CHANGE: Push down and shift left */
     .site-nav {
         width: auto;
         gap: 30px; 
@@ -307,10 +305,10 @@ body {
         flex-shrink: 1;
         min-width: 300px;
         
-        /* NEW: Push the navigation down by the height of the logo area (~105px) */
         margin-top: 100px; 
-        margin-left: 0; /* Ensures no leftover margins */
-        margin-right: 0;
+        /* NEW: Add a right margin to push the element away from the right edge */
+        margin-right: 40px; 
+        margin-left: 0;
     }
 
     .nav-link {
@@ -328,7 +326,6 @@ body {
         min-width: 400px;
     }
 
-    /* Logo Image - INCREASED SIZE (Large Desktop) */
     .main-logo {
         width: 240px;
         height: 120px;
@@ -338,14 +335,15 @@ body {
         font-size: 1.1rem;
     }
 
-    /* Navigation - CRITICAL CHANGE: Push down further for the larger logo */
+    /* Navigation - CRITICAL CHANGE: Push down further and shift left */
     .site-nav {
         gap: 40px; 
         padding: 12px 30px;
         min-width: 450px; 
         
-        /* NEW: Adjusted margin for the larger logo height (~120px) */
         margin-top: 120px; 
+        /* NEW: Increase right margin for larger screen shift */
+        margin-right: 60px; 
     }
 
     .nav-link {
@@ -589,4 +587,5 @@ body {
         height: 20px;
     }
 }
+
 
