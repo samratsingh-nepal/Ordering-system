@@ -1,4 +1,4 @@
-/* style.css - Final Version with Increased Logo/Container Size */
+/* style.css - Final Version with Increased Logo/Container Size (FIXED) */
 
 /* ==================================================================== */
 /* ✒️ CUSTOM FONT DEFINITION (Castle Regular) */
@@ -84,7 +84,7 @@ body {
 
     /* Optimized Vertical & Horizontal Padding for snugness */
     /* Increased padding from 4px 10px to 6px 15px */
-    padding: **6px 15px**;
+    padding: 6px 15px;
     height: auto;
 
     /* CRITICAL: Centering Logo and Tagline inside the Box */
@@ -106,9 +106,9 @@ body {
 /* Logo Image - Base Size (Slightly larger mobile devices) */
 .main-logo {
     /* Increased width from 120px to 140px */
-    width: **140px**;
+    width: 140px;
     /* Increased height from 60px to 70px */
-    height: **70px**;
+    height: 70px;
     object-fit: contain;
     margin-bottom: 1px;
 }
@@ -119,7 +119,7 @@ body {
     font-weight: 500;
     color: var(--secondary);
     /* Increased font-size from 0.85rem to 0.95rem */
-    font-size: **0.95rem**;
+    font-size: 0.95rem;
     margin: 0;
 
     /* --- MODIFIED: Apply Custom Font --- */
@@ -194,7 +194,7 @@ body {
     /* Logo container on tablet/larger mobile */
     .logo-container {
         /* Increased padding from 3px 10px to 5px 12px */
-        padding: **5px 12px**; 
+        padding: 5px 12px;
         border-radius: 12px;
         min-width: auto;
         margin-left: auto;
@@ -204,15 +204,15 @@ body {
     /* Content size */
     .main-logo {
         /* Increased width from 100px to 110px */
-        width: **110px**;
+        width: 110px;
         /* Increased height from 50px to 55px */
-        height: **55px**;
+        height: 55px;
         margin-bottom: 0px;
     }
 
     .tagline {
         /* Increased font-size from 0.8rem to 0.9rem */
-        font-size: **0.9rem**;
+        font-size: 0.9rem;
     }
 
     .site-nav {
@@ -234,22 +234,22 @@ body {
     /* Logo container on small mobile */
     .logo-container {
         /* Increased padding from 2px 8px to 4px 10px */
-        padding: **4px 10px**;
+        padding: 4px 10px;
         min-width: auto;
     }
 
     /* Content size */
     .main-logo {
         /* Increased width from 80px to 90px */
-        width: **90px**;
+        width: 90px;
         /* Increased height from 40px to 45px */
-        height: **45px**;
+        height: 45px;
         margin-bottom: 0px;
     }
 
     .tagline {
         /* Increased font-size from 0.7rem to 0.8rem */
-        font-size: **0.8rem**;
+        font-size: 0.8rem;
     }
 
     .site-nav {
@@ -285,7 +285,7 @@ body {
         min-width: auto;
 
         /* Increased padding from 10px 15px to 12px 18px */
-        padding: **12px 18px**;
+        padding: 12px 18px;
 
         height: auto;
         /* Ensures the fit-content box aligns to the left in the desktop header */
@@ -297,16 +297,16 @@ body {
     /* 3. LOGO IMAGE SIZING: Desktop size */
     .main-logo {
         /* Increased width from 170px to 190px */
-        width: **190px**;
+        width: 190px;
         /* Increased height from 85px to 95px */
-        height: **95px**;
+        height: 95px;
         margin-bottom: 5px;
     }
 
     /* 4. TAGLINE: Desktop font size */
     .tagline {
         /* Increased font-size from 0.9rem to 1rem */
-        font-size: **1rem**;
+        font-size: 1rem;
         white-space: nowrap;
     }
 
@@ -337,19 +337,19 @@ body {
 
     .logo-container {
         /* Increased padding from 15px 20px to 18px 24px */
-        padding: **18px 24px**;
+        padding: 18px 24px;
     }
 
     .main-logo {
         /* Increased width from 180px to 200px */
-        width: **200px**;
+        width: 200px;
         /* Increased height from 90px to 100px */
-        height: **100px**;
+        height: 100px;
     }
 
     .tagline {
         /* Increased font-size from 1rem to 1.1rem */
-        font-size: **1.1rem**;
+        font-size: 1.1rem;
     }
 
     .site-nav {
