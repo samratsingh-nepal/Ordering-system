@@ -263,7 +263,7 @@ body {
     /* 3. LOGO CONTAINER: CRITICAL ADJUSTMENTS FOR WIDTH */
                 .logo-container {
                     /* *** PRIMARY FIX: Increased minimum width to guarantee fit *** */
-                    min-width: 550px;
+                    min-width: 400px;
                     /* INCREASED from 500px to 550px */
         
                     /* Adjusted padding slightly to give a clean edge */
@@ -575,4 +575,5 @@ body {
         width: 20px;
         height: 20px;
     }
+
 }
