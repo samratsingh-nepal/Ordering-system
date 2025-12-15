@@ -1,25 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Da Aloo | About Us</title>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@400;500;600;700;800&family=Paytone+One&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@400;500;600;700;800&family=Paytone+One&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- About page specific CSS -->
+    <style>
+        /* Keep all the inline CSS from the original about.html */
+        :root {
+            --feature-bg: white;
+            --feature-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            --visit-bg: #fff8cc;
+            --visit-border: 1px solid #ffe066;
+            --visit-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            --visit-color: #d4a100;
+        }
+
+        /* Hero Character Image */
+        .character-container {
+            position: relative;
+            width: 280px;
+            height: 320px;
+            margin: 0 auto 0.5rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .character-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .character-container:hover .character-img {
+            transform: scale(1.05);
+        }
+
+        /* Hero Layout and Typography */
+        .hero-combined-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+
+        .hero-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-text-content {
+            margin-top: 0;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin: 0;
+            color: var(--secondary);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 1.5px;
+        }
+
+        /* Story Section Typography */
+        .story-section p {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .story-content {
+            text-align: justify;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Reduce padding in about-hero section */
+        .about-hero {
+            padding: 5px 10px;
+        }
+
+        /* Features Grid */
+        .features-wrapper {
+            padding: 40px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .feature-item {
+            background: var(--feature-bg);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--feature-shadow);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-item h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Visit Us Section */
+        .visit-us-wrapper {
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .visit-link-box {
+            display: inline-block;
+            padding: 18px 25px;
+            border-radius: 12px;
+            background: var(--visit-bg);
+            border: var(--visit-border);
+            box-shadow: var(--visit-shadow);
+        }
+
+        .visit-link {
+            text-decoration: none;
+            font-size: 1.15rem;
+            color: var(--visit-color);
+            font-weight: 700;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .character-container {
+                width: 200px;
+                height: 240px;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .character-container {
+                width: 160px;
+                height: 200px;
+            }
+
+            .hero-title {
+                font-size: 2.4rem;
+            }
+
+            .about-hero {
+                padding: 0 10px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Header -->
     <header class="site-header">
         <div class="container">
             <div class="header-content">
@@ -38,7 +204,6 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main>
         <section class="about-hero">
             <div class="container">
@@ -57,11 +222,18 @@
 
         <section class="container story-section">
             <div class="story-content">
-                <p>Since 2021, <strong>Da Aloo</strong> is on a mission to serve incredible food the right way, with fresh ingredients, strong ethics, and a whole lot of love.</p>
+                <p>Since 2021, <strong>Da Aloo</strong> is on a mission to serve incredible food the right way, with
+                    fresh ingredients, strong ethics, and a whole lot of love.</p>
 
-                <p>Our potatoes, freshly cut with the skin intact, deliver that perfect blend of <em>crispiness on the outside</em> and <em>tenderness on the inside</em> that keeps our customers coming back for more.</p>
+                <p>Our potatoes, freshly cut with the skin intact, deliver that perfect blend of <em>crispiness on the
+                        outside</em> and <em>tenderness on the inside</em> that keeps our customers coming back for
+                    more.</p>
 
-                <p>Savor the praise-worthy flavors with our signature dishes like <strong>Pizza Ball</strong>, <strong>Battered Fries</strong>, <strong>Cheesy Spiral</strong>, <strong>Cheesy Fries</strong>, and loaded favorites like <strong>Butter Chicken Fries</strong> and <strong>Buff Sausage Fries</strong>. Explore the khaja items like <strong>Katti Roll</strong>, <strong>Keema Noodles</strong>, <strong>Burgers</strong> and <strong>Mo:Mo</strong>, that's winning hearts!</p>
+                <p>Savor the praise-worthy flavors with our signature dishes like <strong>Pizza Ball</strong>,
+                    <strong>Battered Fries</strong>, <strong>Cheesy Spiral</strong>, <strong>Cheesy Fries</strong>, and
+                    loaded favorites like <strong>Butter Chicken Fries</strong> and <strong>Buff Sausage Fries</strong>.
+                    Explore the khaja items like <strong>Katti Roll</strong>, <strong>Keema Noodles</strong>,
+                    <strong>Burgers</strong> and <strong>Mo:Mo</strong>, that's winning hearts!</p>
             </div>
 
             <div class="features-wrapper">
@@ -96,29 +268,27 @@
         <div class="visit-us-wrapper">
             <h2 class="section-title" style="font-size: 2rem;">Visit Us</h2>
             <div class="visit-link-box">
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Da Aloo, Lalitpur" target="_blank" class="visit-link">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Da Aloo, Lalitpur" target="_blank"
+                    class="visit-link">
                     📍 Get Directions to Natole, Lalitpur
                 </a>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
             <p>© <span id="currentYear"></span> Da Aloo. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Floating Elements -->
     <a class="floating-whatsapp" href="tel:+9779847695529">
         <i class="fas fa-phone-alt"></i> Call Now
     </a>
 
-    <!-- JavaScript -->
     <script>
-        // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
+
 </html>
