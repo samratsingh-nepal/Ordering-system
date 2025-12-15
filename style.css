@@ -1,4 +1,4 @@
-/* style.css - Final Version with Centered Logo Content and Snug Fit */
+/* style.css - Final Version with Fixed, Centered Logo Box Across All Views */
 
 /* ==================================================================== */
 /* 🎨 CSS Variables for Consistent Theming */
@@ -9,6 +9,10 @@
     --secondary: #000000;
     --background: #FFF9C4;
     --card: #ffffff;
+
+    /* DEFINED FIXED SIZE FOR THE LOGO CONTAINER (Based on 1024px+ content) */
+    --logo-box-width: 400px;
+    --logo-box-height: 140px;
 }
 
 /* ==================================================================== */
@@ -59,51 +63,50 @@ body {
     width: 100%;
 }
 
-/* Logo Container (White Box) - CENTERING LOGO CONTENT HERE */
+/* Logo Container (White Box) - FIXED SIZE AND CENTERING */
 .logo-container {
     background: white;
     border-radius: 15px;
-    /* Adjusted padding for base/mobile fit */
-    padding: 5px 25px;
 
-    /* *** CRITICAL CENTERING FIX (Flexbox) *** */
+    /* --- CRITICAL: FIXED SIZE --- */
+    width: var(--logo-box-width);
+    height: var(--logo-box-height);
+    padding: 0;
+    /* Padding is no longer needed since size is fixed */
+
+    /* --- CRITICAL: CENTERING CONTENT --- */
     display: flex;
     flex-direction: column;
-    /* Stack logo and tagline vertically */
     align-items: center;
-    /* Center content horizontally */
     justify-content: center;
-    /* Center content vertically (if container had fixed height) */
 
     margin-bottom: 5px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border: 2px solid var(--secondary);
-    min-width: fit-content;
     max-width: 90%;
+    /* Ensure it shrinks if viewport is smaller than fixed width */
 }
 
-/* Logo Image - Mobile/Base Style */
+/* Logo Image - Base Size (Used for Desktop) */
 .main-logo {
-    width: 180px;
-    height: 90px;
-    object-fit: cover;
-    margin-bottom: 0px;
-    /* Removed extra spacing */
+    width: 170px;
+    height: 85px;
+    object-fit: contain;
+    /* Use contain to ensure logo aspect ratio is respected */
+    margin-bottom: 5px;
+    /* Spacing between logo and tagline */
 }
 
-/* Logo Tagline - Mobile/Base Style */
+/* Logo Tagline - Base Size (Used for Desktop) */
 .tagline {
     font-style: italic;
     font-weight: 500;
     color: var(--secondary);
     font-size: 0.9rem;
-    margin-top: 0px;
-    /* Removed unnecessary top margin */
+    margin: 0;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    /* Ensure text is centered within its width */
     white-space: nowrap;
-    /* Ensures tagline stays on one line */
 }
 
 /* Navigation Container (Default: Mobile) */
@@ -141,7 +144,7 @@ body {
     background: var(--secondary);
     color: var(--primary);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .nav-link:active {
@@ -155,7 +158,7 @@ body {
 }
 
 /* ==================================================================== */
-/* 📱 RESPONSIVE DESIGN: Mobile Optimizations (Max 767px) */
+/* 📱 RESPONSIVE DESIGN: Mobile Optimizations (Adjust Logo/Text Size within Fixed Box) */
 /* ==================================================================== */
 
 @media (max-width: 767px) {
@@ -167,19 +170,20 @@ body {
         gap: 12px;
     }
 
-    /* Logo container on mobile - adjusted for snug fit */
+    /* Logo Container retains fixed size (width/height from :root) */
     .logo-container {
-        padding: 5px 20px;
         border-radius: 12px;
-        min-width: 250px;
-        /* Snug width adjustment for mobile */
         margin-left: auto;
         margin-right: auto;
+        /* Ensures the fixed width fits even on smaller tablets */
+        max-width: var(--logo-box-width);
     }
 
+    /* Shrink content for mobile inside the fixed box */
     .main-logo {
         width: 100px;
         height: 50px;
+        margin-bottom: 3px;
     }
 
     .tagline {
@@ -200,47 +204,14 @@ body {
     }
 }
 
-/* Small Mobile (Max 480px) */
-@media (max-width: 480px) {
-    .site-header {
-        padding: 6px 0;
-    }
-
-    .logo-container {
-        padding: 4px 15px;
-        /* Tighter vertical padding */
-        min-width: 230px;
-    }
-
-    .main-logo {
-        width: 90px;
-        height: 45px;
-    }
-
-    .tagline {
-        font-size: 0.75rem;
-    }
-
-    .site-nav {
-        padding: 6px 15px;
-    }
-
-    .nav-link {
-        padding: 5px 12px;
-        font-size: 0.75rem;
-    }
-}
-
-/* Very Small Mobile (Max 360px) */
+/* Very Small Mobile (Max 360px) - Shrink content further */
 @media (max-width: 360px) {
-    .logo-container {
-        padding: 3px 12px;
-        min-width: 200px;
-    }
+    /* Logo Container retains fixed size */
 
     .main-logo {
         width: 80px;
         height: 40px;
+        margin-bottom: 2px;
     }
 
     .tagline {
@@ -262,11 +233,10 @@ body {
 
 /* ==================================================================== */
 /* 🖥️ DESKTOP VIEW (768px and up) */
-/* Header content side-by-side: Logo Left, Nav Right */
 /* ==================================================================== */
 @media (min-width: 768px) {
 
-    /* 1. MAIN HEADER CONTAINER: Force horizontal layout and space distribution */
+    /* 1. MAIN HEADER CONTAINER: Side-by-side layout */
     .header-content {
         flex-direction: row !important;
         justify-content: space-between !important;
@@ -275,45 +245,24 @@ body {
         padding: 10px 0;
     }
 
-    /* 2. LOGO SECTION: Ensure it aligns its content to the left */
+    /* 2. LOGO SECTION: Ensure logo box aligns left */
     .logo-section {
         flex-shrink: 0;
         text-align: left !important;
         display: block !important;
-        width: auto;
+        width: var(--logo-box-width);
+        /* Reserve space for the fixed box */
     }
 
-    /* 3. LOGO CONTAINER: CRITICAL ADJUSTMENTS FOR TIGHT FIT */
+    /* 3. LOGO CONTAINER: Retains fixed size, aligns left within section */
     .logo-container {
-        /* *** PRIMARY FIX: Snug min-width for the logo and tagline on desktop *** */
-        min-width: 350px;
-
-        /* Reduced padding for vertical and horizontal tightness */
-        padding: 10px 20px;
-
-        /* Ensure logo is on the left side of the header */
         margin-left: 0 !important;
         margin-right: 0 !important;
-        display: inline-block;
-        /* Flexbox properties remain to keep contents centered inside the box */
     }
 
-    /* 4. LOGO IMAGE SIZING: Desktop size */
-    .main-logo {
-        width: 160px;
-        height: 80px;
-    }
+    /* Logo Image / Tagline: Use Base size defined above */
 
-    /* 5. TAGLINE: Force no-wrap and alignment */
-    .tagline {
-        font-size: 0.8rem;
-        white-space: nowrap;
-        margin-left: 0 !important;
-        text-align: center;
-        /* Central alignment enforced by flexbox but good to specify */
-    }
-
-    /* 6. NAVIGATION STYLES: Ensure it flows right and aligns its links to the right */
+    /* 6. NAVIGATION STYLES: Push navigation to the right */
     .site-nav {
         display: flex !important;
         flex-direction: row !important;
@@ -338,12 +287,7 @@ body {
 /* Desktop - Slightly larger sizes (1024px and up) */
 @media (min-width: 1024px) {
 
-    .logo-container {
-        /* Increased min-width for the slightly larger font size (0.9rem) */
-        padding: 15px 25px;
-        /* Slightly more desktop padding */
-        min-width: 400px;
-    }
+    /* Logo container retains fixed size */
 
     .main-logo {
         width: 170px;
