@@ -3,16 +3,13 @@
 /* ==================================================================== */
 /* ✒️ CUSTOM FONT DEFINITION (Castle Regular) */
 /* ==================================================================== */
+/* Castle Regular Font with better loading strategy */
 @font-face {
-    font-family: 'Castle Regular';
-    /* Update the URL path if your font files are located elsewhere */
-    src: url('fonts/CastleRegular.woff2') format('woff2'),
-        url('fonts/CastleRegular.woff') format('woff'),
-        url('fonts/CastleRegular.ttf') format('truetype');
+    font-family: 'CastleRegular';
+    src: url('fonts/CastleRegular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
-    /* Helps with page loading performance */
+    font-display: block; /* Changed from 'swap' to 'block' */
 }
 
 /* ==================================================================== */
@@ -119,11 +116,17 @@ body {
     margin: 0;
 
     /* --- MODIFIED: Apply Custom Font --- */
-    font-family: 'Castle Regular', serif;
+    font-family: 'Castle Regular', sans-serif;
 
-    text-align: center;
+     text-align: center;
     white-space: nowrap;
-    /* Ensures the width is governed by the text length */
+    /* Hide text until font loads */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-display: block;
+}
+.fonts-loaded .tagline {
+    opacity: 1;
 }
 
 /* Navigation Container (Default: Mobile) */
@@ -573,3 +576,4 @@ body {
         height: 20px;
     }
 }
+
