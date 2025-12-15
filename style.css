@@ -261,36 +261,35 @@ body {
     }
 
     /* 3. LOGO CONTAINER: CRITICAL ADJUSTMENTS FOR WIDTH */
-    .logo-container {
-        /* Increased min-width to ensure tagline fits */
-        min-width: 450px;
-        /* Increased from 400px to 450px */
-
-        /* Adjusted padding slightly to give a clean edge */
-        padding: 20px 25px;
-
-        /* Ensure these overrides are still present: */
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        display: inline-block;
-    }
+        .logo-container {
+            /* *** PRIMARY FIX: Increased minimum width significantly *** */
+            min-width: 500px;
+            /* INCREASED from 450px to 500px */
+    
+            /* Adjusted padding slightly to give a clean edge */
+            padding: 20px 20px;
+            /* Reduced side padding slightly to fit the content */
+    
+            /* Ensure these overrides are still present: */
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            display: inline-block;
+        }
 
     /* 4. LOGO IMAGE SIZING: No changes needed here */
-    .main-logo {
-        width: 160px;
-        height: 80px;
-        margin-bottom: 0;
-    }
+        .main-logo {
+            width: 160px;
+            height: 80px;
+            margin-bottom: 0;
+        }
 
     /* 5. TAGLINE: Slightly smaller text size to fit long phrase */
-    .tagline {
-        font-size: 0.8rem;
-        /* Reduced from 0.9rem to 0.8rem */
-        white-space: nowrap;
-        /* Forces the text to stay on one line */
-        margin-left: 0 !important;
-        text-align: left !important;
-    }
+        .tagline {
+            font-size: 0.8rem;
+            white-space: nowrap;
+            margin-left: 0 !important;
+            text-align: left !important;
+        }
 
     /* 6. NAVIGATION STYLES: No changes needed here */
     .site-nav {
