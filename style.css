@@ -268,7 +268,7 @@ body {
     /* 3. LOGO CONTAINER: Remove centralizing margins/styles */
   .logo-container {
       /* CRITICAL: Increase width and horizontal padding */
-      padding: 10px 50px;
+      padding: 20px 50px;
       /* Increased horizontal padding (30px on each side) */
       min-width: 400px;
       /* Increased minimum width to ensure text fits */
