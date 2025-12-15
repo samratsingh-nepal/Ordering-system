@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@400;500;600;700;800&family=Paytone+One&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-</head>
+    </head>
 
 <body>
     <header class="site-header">
@@ -31,69 +31,46 @@
     </header>
 
     <main>
-        <section class="container" style="padding: 2rem 0;">
-          <h1 class="section-title center"
-    style="font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px; font-size: 3 rem;">Special Offers
-</h1>
-            </h1>
-            <p class="center"
-                style="text-align: center; margin-bottom: 1rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; font-family: 'Montserrat', sans-serif;">
+        <section class="container offers-page-content">
+            <h1 class="section-title center">Special Offers</h1> 
+            
+            <p class="section-description center">
                 Don't miss out on our exclusive deals and promotions
             </p>
 
-            <!-- Offers Grid -->
-            <div class="offers-grid"
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 2rem;">
-                <div class="offer-card"
-                    style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s; display: flex; flex-direction: column;">
-                    <div class="offer-image"
-                        style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 1rem;">
-                        <img src="images/Offer1.png" alt="Special Offer"
-                            style="max-width: 100%; max-height: 300px; width: auto; height: auto; object-fit: contain;">
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <div class="offer-image">
+                        <img src="images/Offer1.png" alt="Special Offer">
                     </div>
                 </div>
-                <div class="offer-card"
-                    style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s; display: flex; flex-direction: column;">
-                    <div class="offer-image"
-                        style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 1rem;">
-                        <img src="images/Offer2.png" alt="Special Offer"
-                            style="max-width: 100%; max-height: 300px; width: auto; height: auto; object-fit: contain;">
+                <div class="offer-card">
+                    <div class="offer-image">
+                        <img src="images/Offer2.png" alt="Special Offer">
                     </div>
                 </div>
-                <div class="offer-card"
-                    style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s; display: flex; flex-direction: column;">
-                    <div class="offer-image"
-                        style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 1rem;">
-                        <img src="images/Offer3.png" alt="Special Offer"
-                            style="max-width: 100%; max-height: 300px; width: auto; height: auto; object-fit: contain;">
+                <div class="offer-card">
+                    <div class="offer-image">
+                        <img src="images/Offer3.png" alt="Special Offer">
                     </div>
                 </div>
-                <div class="offer-card"
-                    style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s; display: flex; flex-direction: column;">
-                    <div class="offer-image"
-                        style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 1rem;">
-                        <img src="images/Offer4.png" alt="Special Offer"
-                            style="max-width: 100%; max-height: 300px; width: auto; height: auto; object-fit: contain;">
+                <div class="offer-card">
+                    <div class="offer-image">
+                        <img src="images/Offer4.png" alt="Special Offer">
                     </div>
                 </div>
             </div>
 
-            <!-- Daily Specials Section - Full Width -->
-            <div style="background: var(--primary); margin-top: 3rem; width: 100%;">
+            <div class="daily-specials-wrapper">
                 <div class="container">
-                    <div class="center" style="padding: 2rem 0;">
-                        <div
-                            style="color: white; padding: 2rem; border-radius: 15px; max-width: 600px; margin: 0 auto; text-align: center;">
-                            <h2
-                                style="margin-bottom: 1rem; color: black; font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px; font-size: 2.5rem;">
-                                Daily Specials
-                            </h2>
-                            <p style="margin-bottom: 1.5rem; color: black; font-family: 'Montserrat', sans-serif;">
+                    <div class="center daily-specials-content">
+                        <div class="daily-specials-box">
+                            <h2 class="daily-specials-title">Daily Specials</h2>
+                            <p class="daily-specials-text">
                                 Check back often for new deals and seasonal promotions
                             </p>
                             <a href="https://wa.me/9779847375984?text=Hi, what are your current offers?"
-                                class="order-now-btn btn-outline" target="_blank"
-                                style="border-color: white; color: black; font-family: 'Montserrat', sans-serif;">
+                                class="order-button" target="_blank">
                                 Inquire About Offers
                             </a>
                         </div>
@@ -118,6 +95,95 @@
     </script>
 
     <style>
+        /* General styling for the new elements based on your original inline styles */
+        .offers-page-content {
+            padding: 2rem 0;
+        }
+
+        .section-description {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .offers-grid {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); 
+            gap: 2rem;
+        }
+
+        .offer-card {
+            background: white; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+            transition: transform 0.3s; 
+            display: flex; 
+            flex-direction: column;
+        }
+        
+        .offer-image {
+            flex: 1; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 1rem;
+        }
+        
+        .offer-image img {
+            max-width: 100%; 
+            max-height: 300px; 
+            width: auto; 
+            height: auto; 
+            object-fit: contain;
+        }
+
+        /* Daily Specials Styles */
+        .daily-specials-wrapper {
+             background: var(--primary); 
+             margin-top: 3rem; 
+             width: 100%;
+        }
+        
+        .daily-specials-content {
+            padding: 2rem 0;
+        }
+
+        .daily-specials-box {
+            color: black; /* Changed from white to black for contrast */
+            padding: 2rem; 
+            border-radius: 15px; 
+            max-width: 600px; 
+            margin: 0 auto; 
+            text-align: center;
+        }
+
+        .daily-specials-title {
+            margin-bottom: 1rem; 
+            color: black; 
+            font-family: 'Bebas Neue', cursive; 
+            letter-spacing: 1.5px; 
+            font-size: 2.5rem; /* Let's keep this as h2, standard size */
+        }
+        
+        .daily-specials-text {
+            margin-bottom: 1.5rem; 
+            color: black; 
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* The Order Button Class should already exist in style.css */
+        .order-now-btn.btn-outline {
+             border-color: black; /* Changed from white to black for contrast */
+             color: black; 
+             font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Responsive styles from before */
         @media (max-width: 768px) {
             .offers-grid {
                 grid-template-columns: 1fr !important;
@@ -140,12 +206,4 @@
         }
     </style>
 </body>
-
-
-
 </html>
-
-
-
-
-
