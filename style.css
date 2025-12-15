@@ -1,4 +1,4 @@
-/* style.css - Final Version with Desktop Header Fixes */
+/* style.css - Final Version with Desktop Header and Sizing Fixes */
 
 /* ==================================================================== */
 /* 🎨 CSS Variables for Consistent Theming */
@@ -59,7 +59,7 @@ body {
     width: 100%;
 }
 
-/* Logo Container (White Box) */
+/* Logo Container (White Box) - Mobile/Base Style */
 .logo-container {
     background: white;
     border-radius: 15px;
@@ -72,7 +72,7 @@ body {
     max-width: 90%;
 }
 
-/* Logo Image */
+/* Logo Image - Mobile/Base Style */
 .main-logo {
     width: 180px;
     height: 90px;
@@ -80,7 +80,7 @@ body {
     margin-bottom: 0px;
 }
 
-/* Logo Tagline */
+/* Logo Tagline - Mobile/Base Style */
 .tagline {
     font-style: italic;
     font-weight: 500;
@@ -195,7 +195,6 @@ body {
     }
 
     .main-logo {
-        /* Reverting large logo size for very small screens */
         width: 100px;
         height: 50px;
     }
@@ -257,7 +256,8 @@ body {
     /* 1. MAIN HEADER CONTAINER: Force horizontal layout and space distribution */
     .header-content {
         flex-direction: row !important;
-        justify-content: space-between !important; /* Push logo left, nav right */
+        justify-content: space-between !important;
+        /* Push logo left, nav right */
         align-items: center !important;
         gap: 40px;
         padding: 10px 0;
@@ -271,23 +271,27 @@ body {
         width: auto;
     }
 
-    /* 3. LOGO CONTAINER: Increased width to ensure tagline fits */
+    /* 3. LOGO CONTAINER: CRITICAL ADJUSTMENTS FOR TIGHT FIT */
     .logo-container {
-        /* *** PRIMARY FIX: Increased minimum width to guarantee fit *** */
-        min-width: 550px; 
-        
-        padding: 20px 20px; /* Adjusted padding to maximize content area */
-        
+        /* *** PRIMARY FIX: Reduced width to achieve a tight fit *** */
+        min-width: 380px;
+        /* Adjusted to fit the logo and tagline snugly */
+
+        padding: 20px 20px;
+        /* Consistent padding */
+
         /* Remove mobile center alignment overrides */
         margin-left: 0 !important;
         margin-right: 0 !important;
         display: inline-block;
     }
 
-    /* 4. LOGO IMAGE SIZING: Standard desktop size */
+    /* 4. LOGO IMAGE SIZING: Increased slightly for better visual fit */
     .main-logo {
-        width: 160px;
-        height: 80px;
+        width: 170px;
+        /* Slight increase from 160px */
+        height: 85px;
+        /* Slight increase from 80px */
         margin-bottom: 0;
     }
 
@@ -303,13 +307,16 @@ body {
     .site-nav {
         display: flex !important;
         flex-direction: row !important;
-        justify-content: flex-end !important; /* Align links to the far right */
+        justify-content: flex-end !important;
+        /* Align links to the far right */
         align-items: center;
-        flex-grow: 1; /* Allows nav to take remaining space, pushing links right */
+        flex-grow: 1;
+        /* Allows nav to take remaining space, pushing links right */
         gap: 15px;
         max-width: none !important;
         width: auto !important;
-        padding: 10px 0; /* Adjust padding for desktop alignment */
+        padding: 10px 0;
+        /* Adjust padding for desktop alignment */
     }
 
     /* 7. NAVIGATION LINK STYLES: Standard sizing */
@@ -327,16 +334,18 @@ body {
     /* Ensure large screen keeps the necessary width */
     .logo-container {
         padding: 20px 25px;
-        min-width: 550px; 
+        min-width: 400px;
+        /* Slightly more space for larger screens/fonts */
     }
 
     .main-logo {
-        width: 160px;
-        height: 80px;
+        width: 180px;
+        height: 90px;
     }
 
     .tagline {
-        font-size: 0.9rem; /* Slightly larger text on larger screens */
+        font-size: 0.9rem;
+        /* Slightly larger text on larger screens */
     }
 
     .site-nav {
