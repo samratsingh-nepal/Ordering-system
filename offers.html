@@ -23,14 +23,13 @@
                         <img src="images/logo.png" alt="Da Aloo Logo" class="main-logo">
                         <div class="tagline">"Where Hunger Comes to An End"</div>
                     </div>
+                    <nav class="site-nav">
+                        <a href="index.html" class="nav-link">Menu</a>
+                        <a href="offers.html" class="nav-link">Offers</a>
+                        <a href="about.html" class="nav-link">About</a>
+                    </nav>
                 </div>
-                <nav class="site-nav">
-                    <a href="index.html" class="nav-link">Menu</a>
-                    <a href="offers.html" class="nav-link">Offers</a>
-                    <a href="about.html" class="nav-link">About</a>
-                </nav>
             </div>
-        </div>
     </header>
 
     <main>
@@ -141,54 +140,8 @@
             }
         }
     </style>
-    <script>
-    // Font loading helper to prevent FOUT/FOIT
-    (function() {
-        // Check if fonts are already loaded
-        if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(function() {
-                document.documentElement.classList.add('fonts-loaded');
-                console.log('Fonts loaded, showing CastleRegular text');
-            });
-        }
-        
-        // Also try to load CastleRegular specifically
-        const castleFont = new FontFace(
-            'CastleRegular', 
-            'url(fonts/CastleRegular.woff2)',
-            { display: 'block' }
-        );
-        
-        castleFont.load().then(function(loadedFont) {
-            document.fonts.add(loadedFont);
-            document.documentElement.classList.add('fonts-loaded');
-            console.log('CastleRegular font loaded');
-        }).catch(function(error) {
-            console.error('Failed to load CastleRegular:', error);
-            // Show text anyway with fallback after timeout
-            setTimeout(function() {
-                document.documentElement.classList.add('fonts-loaded');
-                document.querySelectorAll('.tagline').forEach(function(el) {
-                    el.style.fontFamily = "'Georgia', 'Times New Roman', serif";
-                    el.style.opacity = "1";
-                });
-            }, 100);
-        });
-        
-        // Fallback: if fonts don't load within 1 second, show text anyway
-        setTimeout(function() {
-            if (!document.documentElement.classList.contains('fonts-loaded')) {
-                document.documentElement.classList.add('fonts-loaded');
-                document.querySelectorAll('.tagline').forEach(function(el) {
-                    el.style.opacity = "1";
-                });
-            }
-        }, 1000);
-    })();
-</script>
 </body>
 
 
 
 </html>
-
