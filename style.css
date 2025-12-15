@@ -1,4 +1,4 @@
-/* style.css - Final Version with Responsive, Snug Logo Container Fit */
+/* style.css - Final Version with Responsive, Snug Logo Container Fit (Optimized Mobile) */
 
 /* ==================================================================== */
 /* 🎨 CSS Variables for Consistent Theming */
@@ -64,10 +64,9 @@ body {
     background: white;
     border-radius: 15px;
 
-    /* Responsive sizing based on content and minimum width */
-    padding: 5px 20px;
+    /* Optimized Base/Mobile Padding: Tighter vertical spacing */
+    padding: 4px 20px;
     min-width: 280px;
-    /* Base minimum width for mobile/content */
     height: auto;
 
     /* CRITICAL: Centering Logo and Tagline inside the Box */
@@ -87,8 +86,8 @@ body {
     width: 120px;
     height: 60px;
     object-fit: contain;
-    margin-bottom: 3px;
-    /* Spacing between logo and tagline */
+    /* Reduced margin for tighter fit */
+    margin-bottom: 1px;
 }
 
 /* Logo Tagline - Base Style */
@@ -166,7 +165,8 @@ body {
 
     /* Logo container on tablet/larger mobile */
     .logo-container {
-        padding: 5px 20px;
+        /* Tighter padding for snug vertical fit */
+        padding: 3px 18px;
         border-radius: 12px;
         min-width: 250px;
         margin-left: auto;
@@ -177,6 +177,8 @@ body {
     .main-logo {
         width: 100px;
         height: 50px;
+        margin-bottom: 0px;
+        /* Reduced vertical spacing */
     }
 
     .tagline {
@@ -201,14 +203,16 @@ body {
 
     /* Logo container on small mobile */
     .logo-container {
-        padding: 4px 10px;
+        /* Minimal padding for smallest screens */
+        padding: 2px 10px;
         min-width: 200px;
     }
 
     .main-logo {
         width: 80px;
         height: 40px;
-        margin-bottom: 2px;
+        margin-bottom: 0px;
+        /* Minimal vertical spacing */
     }
 
     .tagline {
@@ -244,18 +248,13 @@ body {
 
     /* 2. LOGO CONTAINER: CRITICAL ADJUSTMENTS FOR TIGHT FIT ON DESKTOP */
     .logo-container {
-        /* Optimal min-width for the full tagline at desktop font size (0.9rem) */
         min-width: 380px;
-
-        /* Adjusted padding for vertical and horizontal tightness */
         padding: 10px 25px;
+        /* Keeps your preferred desktop snugness */
         height: auto;
-
-        /* Ensure logo is on the left side of the header */
         margin-left: 0 !important;
         margin-right: 0 !important;
         display: flex;
-        /* Keep flex for centering */
     }
 
     /* 3. LOGO IMAGE SIZING: Desktop size */
@@ -263,6 +262,7 @@ body {
         width: 170px;
         height: 85px;
         margin-bottom: 5px;
+        /* Desktop spacing is slightly more generous */
     }
 
     /* 4. TAGLINE: Desktop font size */
@@ -298,7 +298,6 @@ body {
 
     .logo-container {
         min-width: 400px;
-        /* Slight buffer for larger screens */
         padding: 15px 30px;
     }
 
@@ -309,7 +308,6 @@ body {
 
     .tagline {
         font-size: 1rem;
-        /* Slightly larger text on largest screens */
     }
 
     .site-nav {
