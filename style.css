@@ -121,7 +121,7 @@ body {
     margin: 0;
 
     /* --- MODIFIED: Apply Custom Font --- */
-    font-family: 'Castle Regular', serif;
+    font-family: 'Castle Regular';
 
     text-align: center;
     white-space: nowrap;
@@ -584,4 +584,5 @@ body {
         height: 20px;
     }
 }
+
 
