@@ -267,11 +267,15 @@ body {
 
     /* 3. LOGO CONTAINER: Remove centralizing margins/styles */
     .logo-container {
-        /* CRITICAL: Remove auto margins that force center alignment on a stacked mobile layout */
+    padding: 10px 30px;
+        /* Increased horizontal padding (30px on each side) */
+        min-width: 300px;
+        /* Increased minimum width to ensure text fits */
+    
+        /* Ensure these overrides are still present: */
         margin-left: 0 !important;
         margin-right: 0 !important;
-        /* Keep the custom padding and dimensions */
-        padding: 8px 20px;
+        display: inline-block;
     }
 
     /* 4. TAGLINE: Ensure alignment is left */
