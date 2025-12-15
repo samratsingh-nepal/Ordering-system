@@ -240,82 +240,73 @@ body {
     }
 }
 
-/* Tablet and Desktop - Horizontal Layout (MODIFIED) */
+/* Tablet and Desktop - Horizontal Layout (CRUCIAL MODIFICATIONS) */
 @media (min-width: 768px) {
     .site-header {
         padding: 15px 0;
     }
 
-    /* Change the main header container to be horizontal */
+    /* 1. MAIN HEADER CONTAINER: Switch to horizontal, push elements apart */
     .header-content {
-        flex-direction: row;
-        /* NEW: Row layout for desktop */
-        justify-content: space-between;
-        /* NEW: Push logo to left, nav to right */
-        align-items: center;
+        flex-direction: row !important;
+        /* Force row layout */
+        justify-content: space-between !important;
+        /* Logo left, Nav right */
+        align-items: center !important;
         gap: 20px;
     }
 
-    /* Logo Section (Left Side) */
+    /* 2. LOGO SECTION: Ensure alignment is on the left */
     .logo-section {
         text-align: left;
-        /* NEW: Align content to the left */
         width: auto;
-        /* Allow content to dictate width */
-        /* Ensure logo and tagline stay centered within their small container on the left */
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: flex-start !important;
         /* Align content to the start (left) */
     }
 
-    /* Logo Box Styling - Smaller for Desktop */
+    /* 3. LOGO BOX STYLING: Smaller and left-aligned */
     .logo-container {
         padding: 8px 20px;
         min-width: 200px;
         margin-bottom: 5px;
 
-        /* Remove auto margins from mobile to fix positioning */
-        margin-left: unset;
-        margin-right: unset;
+        /* OVERRIDE: Remove auto margins forcing center alignment */
+        margin-left: unset !important;
+        margin-right: unset !important;
         display: inline-block;
     }
 
-    /* Logo Image Sizing - Smaller for Desktop */
+    /* 4. LOGO IMAGE SIZING: Smaller */
     .main-logo {
         width: 140px;
         height: 70px;
         margin-bottom: 0;
     }
 
-    /* Tagline */
+    /* 5. TAGLINE: Aligned left */
     .tagline {
         font-size: 0.9rem;
         white-space: nowrap;
-        /* Align tagline with logo on the left */
-        margin-left: 0;
+        margin-left: 0 !important;
     }
 
-    /* Navigation Styles (Right Side) */
+    /* 6. NAVIGATION STYLES: Push to the right */
     .site-nav {
-        /* Overriding the mobile/stacked centering styles */
-        width: auto;
-        /* Use only necessary width */
-        max-width: 100%;
-        /* Remove max-width restriction */
+        /* OVERRIDE: Remove fixed centering styles */
+        width: auto !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+
         gap: 15px;
-        /* Smaller gap between links */
         padding: 8px 20px;
-        /* Smaller padding */
-        margin: 0;
-        /* Remove auto margins */
         justify-content: flex-end;
         /* Align links to the right */
         flex-shrink: 0;
-        /* Prevent nav from shrinking */
     }
 
-    /* Navigation Link Styles - Smaller for Desktop */
+    /* 7. NAVIGATION LINK STYLES: Smaller buttons */
     .nav-link {
         padding: 8px 20px;
         font-size: 0.9rem;
@@ -324,7 +315,7 @@ body {
     }
 }
 
-/* Desktop - Slightly larger sizes */
+/* Desktop - Slightly larger sizes (1024px and up) */
 @media (min-width: 1024px) {
     .logo-container {
         padding: 10px 25px;
