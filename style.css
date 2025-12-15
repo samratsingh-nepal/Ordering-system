@@ -1,23 +1,6 @@
-/* style.css - Final Version with Castle Regular Font for Tagline */
+/* style.css (updated with mobile header optimizations and centered navigation) */
 
-/* ==================================================================== */
-/* ✒️ CUSTOM FONT DEFINITION (Castle Regular) */
-/* ==================================================================== */
-@font-face {
-    font-family: 'Castle Regular';
-    /* Update the URL path if your font files are located elsewhere */
-    src: url('fonts/CastleRegular.woff2') format('woff2'),
-        url('fonts/CastleRegular.woff') format('woff'),
-        url('fonts/CastleRegular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-    /* Helps with page loading performance */
-}
-
-/* ==================================================================== */
-/* 🎨 CSS Variables for Consistent Theming */
-/* ==================================================================== */
+/* CSS Variables for consistent theming */
 :root {
     --primary: #FDFD96;
     --primary-dark: #E6B800;
@@ -26,9 +9,7 @@
     --card: #ffffff;
 }
 
-/* ==================================================================== */
-/* 📝 Reset and Base Styles */
-/* ==================================================================== */
+/* Reset and Base Styles */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -49,18 +30,16 @@ body {
     padding: 0 20px;
 }
 
-/* ==================================================================== */
-/* ⏫ HEADER STYLES (Default: Stacked/Mobile) */
-/* ==================================================================== */
+/* ===== HEADER STYLES ===== */
 
-/* Site Header Background */
+/* Site Header */
 .site-header {
     background: var(--primary);
     padding: 10px 0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Header Content Wrapper (Default: Mobile/Stacked) */
+/* Center align header content */
 .header-content {
     display: flex;
     flex-direction: column;
@@ -74,7 +53,7 @@ body {
     width: 100%;
 }
 
-/* Logo Container (White Box) - BASE/MOBILE STYLES */
+/* Logo Container */
 .logo-container {
     background: white;
     border-radius: 15px;
@@ -96,37 +75,30 @@ body {
     margin-bottom: 5px;
     /* Changed box-shadow color to var(--primary-dark) for better contrast/theme consistency */
     box-shadow: 0 2px 8px var(--primary-dark);
-   
+
     /* Allow margin auto to center the fit-content box */
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Logo Image - Base Size (Slightly larger mobile devices) */
+/* Logo Image */
 .main-logo {
-    width: 120px;
-    height: 60px;
-    object-fit: contain;
-    margin-bottom: 1px;
+    width: 180px;
+    height: 90px;
+    object-fit: cover;
+    margin-bottom: 0px;
 }
 
-/* Logo Tagline - Base Style */
 .tagline {
     font-style: italic;
     font-weight: 500;
     color: var(--secondary);
-    font-size: 0.85rem;
-    margin: 0;
-
-    /* --- MODIFIED: Apply Custom Font --- */
-    font-family: 'Castle Regular', serif;
-
-    text-align: center;
-    white-space: nowrap;
-    /* Ensures the width is governed by the text length */
+    font-size: 0.9rem;
+    margin-top: 5px;
+    font-family: 'Montserrat', sans-serif;
 }
 
-/* Navigation Container (Default: Mobile) */
+/* Navigation Styles */
 .site-nav {
     display: flex;
     justify-content: center;
@@ -161,23 +133,23 @@ body {
     background: var(--secondary);
     color: var(--primary);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .nav-link:active {
     transform: translateY(0);
 }
 
+/* Active state for current page */
 .nav-link.active {
     background: var(--secondary);
     color: var(--primary);
     border-color: var(--secondary);
 }
 
-/* ==================================================================== */
-/* 📱 RESPONSIVE DESIGN: Mobile Optimizations (Max 767px) */
-/* ==================================================================== */
+/* ===== RESPONSIVE DESIGN ===== */
 
+/* Mobile Optimizations - ENSURE CENTERED LAYOUT */
 @media (max-width: 767px) {
     .site-header {
         padding: 8px 0;
@@ -187,22 +159,18 @@ body {
         gap: 12px;
     }
 
-    /* Logo container on tablet/larger mobile */
     .logo-container {
-        /* Tighter padding for snug fit */
-        padding: 3px 10px;
-        /* Reduced horizontal padding */
+        padding: 5px 25px;
         border-radius: 12px;
-        min-width: auto;
+        min-width: 260px;
         margin-left: auto;
         margin-right: auto;
+        display: block;
     }
 
-    /* Content size */
     .main-logo {
         width: 100px;
         height: 50px;
-        margin-bottom: 0px;
     }
 
     .tagline {
@@ -213,6 +181,7 @@ body {
         gap: 10px;
         padding: 8px 15px;
         max-width: 300px;
+        margin: 0 auto;
     }
 
     .nav-link {
@@ -222,22 +191,50 @@ body {
     }
 }
 
-/* Very Small Mobile (Max 360px) - Shrink box and content further */
-@media (max-width: 360px) {
-
-    /* Logo container on small mobile */
-    .logo-container {
-        /* Minimal padding for smallest screens */
-        padding: 2px 8px;
-        /* Minimal horizontal padding */
-        min-width: auto;
+/* Small Mobile */
+@media (max-width: 480px) {
+    .site-header {
+        padding: 6px 0;
     }
 
-    /* Content size */
+    .logo-container {
+        padding: 6px 20px;
+        min-width: 240px;
+    }
+
+    .main-logo {
+        width: 180px;
+        height: 90px;
+    }
+
+    .tagline {
+        font-size: 0.75rem;
+    }
+
+    .site-nav {
+        gap: 10px;
+        padding: 6px 15px;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .nav-link {
+        padding: 5px 12px;
+        font-size: 0.75rem;
+        min-width: 55px;
+    }
+}
+
+/* Very Small Mobile */
+@media (max-width: 360px) {
+    .logo-container {
+        padding: 5px 15px;
+        min-width: 220px;
+    }
+
     .main-logo {
         width: 80px;
         height: 40px;
-        margin-bottom: 0px;
     }
 
     .tagline {
@@ -248,6 +245,7 @@ body {
         gap: 8px;
         padding: 5px 12px;
         max-width: 280px;
+        margin: 0 auto;
     }
 
     .nav-link {
@@ -257,77 +255,70 @@ body {
     }
 }
 
-/* ==================================================================== */
-/* 🖥️ DESKTOP VIEW (768px and up) */
-/* ==================================================================== */
+/* Tablet and Desktop - Centered Layout */
 @media (min-width: 768px) {
+    .site-header {
+        padding: 15px 0;
+    }
 
-    /* 1. MAIN HEADER CONTAINER: Side-by-side layout */
     .header-content {
-        flex-direction: row !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        gap: 40px;
-        padding: 10px 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
     }
 
-    /* 2. LOGO CONTAINER: CRITICAL ADJUSTMENTS FOR TIGHT FIT ON DESKTOP */
-    .logo-container {
-        width: fit-content;
-        min-width: auto;
-
-        /* Optimized horizontal padding for desktop */
-        padding: 10px 15px;
-        /* Reduced horizontal padding for tighter fit */
-
-        height: auto;
-        /* Ensures the fit-content box aligns to the left in the desktop header */
-        margin-left: 0 !important;
-        margin-right: 0 !important;
+    .logo-section {
+        text-align: center;
+        width: 100%;
         display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    /* 3. LOGO IMAGE SIZING: Desktop size */
+    .logo-container {
+        padding: 12px 45px;
+        display: inline-block;
+        margin-bottom: 15px;
+        min-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .main-logo {
-        width: 170px;
-        height: 85px;
-        margin-bottom: 5px;
+        width: 220px;
+        height: 110px;
+        margin-bottom: 0;
     }
 
-    /* 4. TAGLINE: Desktop font size */
     .tagline {
-        font-size: 0.9rem;
+        font-size: 1rem;
         white-space: nowrap;
     }
 
-    /* 5. NAVIGATION STYLES: Push navigation to the right */
     .site-nav {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: flex-end !important;
-        align-items: center;
-        flex-grow: 1;
-        gap: 15px;
-        max-width: none !important;
-        width: auto !important;
-        padding: 10px 0;
+        width: 100%;
+        max-width: 400px;
+        gap: 25px;
+        padding: 12px 30px;
+        margin: 0 auto;
+        justify-content: center;
     }
 
-    /* 6. NAVIGATION LINK STYLES: Standard sizing */
     .nav-link {
-        padding: 8px 20px;
-        font-size: 0.9rem;
+        padding: 10px 25px;
+        font-size: 1rem;
         flex: none;
         min-width: auto;
+        text-align: center;
     }
 }
 
-/* Desktop - Slightly larger screens (1024px and up) */
+/* Desktop - Slightly larger sizes */
 @media (min-width: 1024px) {
-
     .logo-container {
-        /* Optimized horizontal padding for larger screens */
-        padding: 15px 20px;
+        padding: 15px 55px;
+        min-width: 380px;
     }
 
     .main-logo {
@@ -336,24 +327,22 @@ body {
     }
 
     .tagline {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .site-nav {
-        gap: 20px;
-        padding: 10px 25px;
+        max-width: 450px;
+        gap: 30px;
+        padding: 15px 35px;
     }
 
     .nav-link {
-        padding: 10px 25px;
-        font-size: 1rem;
+        padding: 12px 30px;
+        font-size: 1.1rem;
     }
 }
 
-
-/* ==================================================================== */
-/* 🌟 HERO SECTION STYLES */
-/* ==================================================================== */
+/* ===== HERO SECTION STYLES ===== */
 
 .hero-section {
     padding: 30px 20px;
@@ -406,6 +395,7 @@ body {
     gap: 1rem;
 }
 
+
 .character-image {
     width: 150px;
     height: 210px;
@@ -414,7 +404,18 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    clip-path: polygon(50% 0%, 70% 8%, 85% 25%, 92% 45%, 88% 68%, 72% 88%, 50% 100%, 28% 88%, 12% 68%, 8% 45%, 15% 25%, 30% 8%);
+    clip-path: polygon(50% 0%,
+            70% 8%,
+            85% 25%,
+            92% 45%,
+            88% 68%,
+            72% 88%,
+            50% 100%,
+            28% 88%,
+            12% 68%,
+            8% 45%,
+            15% 25%,
+            30% 8%);
     border-radius: 50% / 45%;
     overflow: hidden;
 }
@@ -430,10 +431,12 @@ body {
     padding: 0;
 }
 
+.hero-title {
+    font-size: 2rem;
+    margin: -1;
+}
 
-/* ==================================================================== */
-/* ⬇️ FOOTER STYLES */
-/* ==================================================================== */
+/* ===== FOOTER STYLES ===== */
 
 .site-footer {
     background: var(--secondary);
@@ -443,9 +446,7 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-/* ==================================================================== */
-/* 🟢 WHATSAPP FLOATING BUTTON */
-/* ==================================================================== */
+/* ===== WHATSAPP FLOATING BUTTON ===== */
 
 .floating-whatsapp {
     position: fixed;
@@ -472,9 +473,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* ==================================================================== */
-/* 🍲 MENU SECTION STYLES (Includes Customization Modal Fixes) */
-/* ==================================================================== */
+/* ===== MENU SECTION STYLES ===== */
 
 .menu-section {
     padding: 30px 20px;
@@ -494,16 +493,7 @@ body {
     text-align: center;
 }
 
-/* Customization Header for Modals/Sidebars */
-.customization-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 15px !important;
-    min-height: 60px;
-    gap: 10px;
-}
-
+/* Ensure title fits within header on all devices */
 .customization-header h3 {
     margin: 0;
     padding: 0;
@@ -513,6 +503,30 @@ body {
     white-space: nowrap;
     flex: 1;
     font-family: 'Montserrat', sans-serif !important;
+}
+
+/* For very long item names, allow wrapping on small screens */
+@media (max-width: 480px) {
+    .customization-header h3 {
+        white-space: normal;
+        max-height: 40px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        font-size: 14px !important;
+        line-height: 1.1;
+    }
+}
+
+/* Adjust header container to ensure title fits */
+.customization-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px !important;
+    min-height: 60px;
+    gap: 10px;
 }
 
 /* Close button adjustments */
@@ -529,7 +543,7 @@ body {
     color: var(--secondary);
 }
 
-/* Mobile-specific adjustments for customization header */
+/* Mobile-specific adjustments */
 @media (max-width: 768px) {
     .customization-header {
         padding: 10px 12px !important;
@@ -539,24 +553,11 @@ body {
     .customization-header h3 {
         font-size: 16px !important;
         max-width: calc(100% - 30px);
+        /* Reserve space for close button */
     }
 }
 
-/* Small screen text wrapping */
-@media (max-width: 480px) {
-    .customization-header h3 {
-        white-space: normal;
-        max-height: 40px;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        font-size: 14px !important;
-        line-height: 1.1;
-    }
-}
-
-/* Extremely small screens adjustments */
+/* For extremely small screens */
 @media (max-width: 360px) {
     .customization-header {
         padding: 8px 10px !important;
