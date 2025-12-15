@@ -1,4 +1,19 @@
-/* style.css - Final Version with Responsive, Centered, and Horizontally Snug Logo Container */
+/* style.css - Final Version with Castle Regular Font for Tagline */
+
+/* ==================================================================== */
+/* ✒️ CUSTOM FONT DEFINITION (Castle Regular) */
+/* ==================================================================== */
+@font-face {
+    font-family: 'Castle Regular';
+    /* Update the URL path if your font files are located elsewhere */
+    src: url('fonts/CastleRegular.woff2') format('woff2'),
+        url('fonts/CastleRegular.woff') format('woff'),
+        url('fonts/CastleRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    /* Helps with page loading performance */
+}
 
 /* ==================================================================== */
 /* 🎨 CSS Variables for Consistent Theming */
@@ -79,8 +94,9 @@ body {
     justify-content: center;
 
     margin-bottom: 5px;
-    box-shadow: 0 2px 8px #E6B800;
-    border: 2px solid var(--secondary);
+    /* Changed box-shadow color to var(--primary-dark) for better contrast/theme consistency */
+    box-shadow: 0 2px 8px var(--primary-dark);
+   
     /* Allow margin auto to center the fit-content box */
     margin-left: auto;
     margin-right: auto;
@@ -101,7 +117,10 @@ body {
     color: var(--secondary);
     font-size: 0.85rem;
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+
+    /* --- MODIFIED: Apply Custom Font --- */
+    font-family: 'Castle Regular', serif;
+
     text-align: center;
     white-space: nowrap;
     /* Ensures the width is governed by the text length */
@@ -214,6 +233,7 @@ body {
         min-width: auto;
     }
 
+    /* Content size */
     .main-logo {
         width: 80px;
         height: 40px;
@@ -552,6 +572,4 @@ body {
         width: 20px;
         height: 20px;
     }
-
 }
-
