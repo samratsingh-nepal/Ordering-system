@@ -1,4 +1,4 @@
-/* style.css - Final Version with Castle Regular Font for Tagline */
+/* style.css - Fixed Version with CastleRegular Font for Tagline */
 
 /* ==================================================================== */
 /* ✒️ CUSTOM FONT DEFINITION (Castle Regular) */
@@ -9,7 +9,7 @@
     src: url('fonts/CastleRegular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
-    font-display: block; /* Changed from 'swap' to 'block' */
+    font-display: swap; /* Changed back to swap for better performance */
 }
 
 /* ==================================================================== */
@@ -37,6 +37,15 @@ body {
     background-color: var(--background);
     color: var(--secondary);
     line-height: 1.6;
+}
+
+/* Font loading state */
+body.fonts-loading .tagline {
+    opacity: 0;
+}
+
+body.fonts-loaded .tagline {
+    opacity: 1;
 }
 
 /* Container for consistent width */
@@ -75,26 +84,15 @@ body {
 .logo-container {
     background: white;
     border-radius: 15px;
-
-    /* CRITICAL: Use fit-content and remove min-width for snug horizontal fit */
     width: fit-content;
-
-    /* Optimized Vertical & Horizontal Padding for snugness */
     padding: 4px 10px;
-    /* Reduced horizontal padding for tighter fit */
     height: auto;
-
-    /* CRITICAL: Centering Logo and Tagline inside the Box */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     margin-bottom: 5px;
-    /* Changed box-shadow color to var(--primary-dark) for better contrast/theme consistency */
     box-shadow: 0 2px 8px var(--primary-dark);
-   
-    /* Allow margin auto to center the fit-content box */
     margin-left: auto;
     margin-right: auto;
 }
@@ -114,67 +112,14 @@ body {
     color: var(--secondary);
     font-size: 0.85rem;
     margin: 0;
-
-    /* --- MODIFIED: Apply Custom Font --- */
-    font-family: 'Castle Regular', sans-serif;
-
-     text-align: center;
-    white-space: nowrap;
-    /* Hide text until font loads */
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    font-display: block;
-}
-.fonts-loaded .tagline {
-    opacity: 1;
-}
-
-/* Navigation Container (Default: Mobile) */
-.site-nav {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 10px 20px;
-    border-radius: 25px;
-    backdrop-filter: blur(10px);
-    width: 100%;
-    max-width: 350px;
-    margin: 0 auto;
-}
-
-.nav-link {
-    text-decoration: none;
-    font-weight: 600;
-    color: var(--secondary);
-    padding: 8px 20px;
-    border-radius: 20px;
-    background: white;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-    border: 2px solid var(--secondary);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    flex: 1;
+    
+    /* --- FIXED: Use correct font-family name --- */
+    font-family: 'CastleRegular', 'Georgia', 'Times New Roman', serif;
+    
     text-align: center;
-    min-width: 70px;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.nav-link:hover {
-    background: var(--secondary);
-    color: var(--primary);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.nav-link:active {
-    transform: translateY(0);
-}
-
-.nav-link.active {
-    background: var(--secondary);
-    color: var(--primary);
-    border-color: var(--secondary);
+    white-space: nowrap;
+    opacity: 0; /* Start hidden, shown when font loads */
+    transition: opacity 0.3s ease;
 }
 
 /* ==================================================================== */
@@ -192,9 +137,7 @@ body {
 
     /* Logo container on tablet/larger mobile */
     .logo-container {
-        /* Tighter padding for snug fit */
         padding: 3px 10px;
-        /* Reduced horizontal padding */
         border-radius: 12px;
         min-width: auto;
         margin-left: auto;
@@ -227,12 +170,9 @@ body {
 
 /* Very Small Mobile (Max 360px) - Shrink box and content further */
 @media (max-width: 360px) {
-
     /* Logo container on small mobile */
     .logo-container {
-        /* Minimal padding for smallest screens */
         padding: 2px 8px;
-        /* Minimal horizontal padding */
         min-width: auto;
     }
 
@@ -264,7 +204,6 @@ body {
 /* 🖥️ DESKTOP VIEW (768px and up) */
 /* ==================================================================== */
 @media (min-width: 768px) {
-
     /* 1. MAIN HEADER CONTAINER: Side-by-side layout */
     .header-content {
         flex-direction: row !important;
@@ -278,13 +217,8 @@ body {
     .logo-container {
         width: fit-content;
         min-width: auto;
-
-        /* Optimized horizontal padding for desktop */
         padding: 10px 15px;
-        /* Reduced horizontal padding for tighter fit */
-
         height: auto;
-        /* Ensures the fit-content box aligns to the left in the desktop header */
         margin-left: 0 !important;
         margin-right: 0 !important;
         display: flex;
@@ -327,9 +261,7 @@ body {
 
 /* Desktop - Slightly larger screens (1024px and up) */
 @media (min-width: 1024px) {
-
     .logo-container {
-        /* Optimized horizontal padding for larger screens */
         padding: 15px 20px;
     }
 
@@ -352,7 +284,6 @@ body {
         font-size: 1rem;
     }
 }
-
 
 /* ==================================================================== */
 /* 🌟 HERO SECTION STYLES */
@@ -432,7 +363,6 @@ body {
     margin: 0;
     padding: 0;
 }
-
 
 /* ==================================================================== */
 /* ⬇️ FOOTER STYLES */
@@ -576,4 +506,3 @@ body {
         height: 20px;
     }
 }
-
