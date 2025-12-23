@@ -14,41 +14,45 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* --- Vertical Marquee Slider --- */
-        .marquee-viewport-vertical {
-            height: 600px;
+        /* --- Horizontal Marquee Slider --- */
+        .marquee-viewport-horizontal {
             width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
             overflow: hidden;
             display: flex;
-            justify-content: center;
             cursor: pointer;
             position: relative;
+            padding: 20px 0;
+            /* Vertical breathing room */
         }
 
-        .marquee-track-vertical {
+        .marquee-track-horizontal {
             display: flex;
-            flex-direction: column;
-            height: max-content;
-            /* Faster movement (reduced from 30s to 18s) */
-            animation: scrollVertical 18s linear infinite;
+            flex-direction: row;
+            /* Changed from column to row */
+            width: max-content;
+            /* Ensure track is as wide as all images */
+            /* Adjusted time to 20s for smooth horizontal flow */
+            animation: scrollHorizontal 20s linear infinite;
         }
 
         /* Pause when user interacts */
-        .marquee-viewport-vertical:hover .marquee-track-vertical,
-        .marquee-viewport-vertical:active .marquee-track-vertical {
+        .marquee-viewport-horizontal:hover .marquee-track-horizontal,
+        .marquee-viewport-horizontal:active .marquee-track-horizontal {
             animation-play-state: paused !important;
         }
 
         .offer-card {
             background: white;
             border-radius: 20px;
-            margin: 1.5rem 0;
+            margin: 0 1.5rem;
+            /* Horizontal margin */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             width: 750px;
+            /* Kept your wide desktop width */
             padding: 15px;
             transition: transform 0.3s ease;
+            flex-shrink: 0;
+            /* Prevents images from squishing */
         }
 
         .offer-card:hover {
@@ -62,13 +66,14 @@
             display: block;
         }
 
-        @keyframes scrollVertical {
+        /* Updated to Translate X for Right to Left movement */
+        @keyframes scrollHorizontal {
             0% {
-                transform: translateY(0);
+                transform: translateX(0);
             }
 
             100% {
-                transform: translateY(-50%);
+                transform: translateX(-50%);
             }
         }
 
@@ -105,13 +110,10 @@
         /* --- Mobile Tweaks --- */
         @media (max-width: 768px) {
             .offer-card {
-                width: 92vw;
-                margin: 1rem 0;
+                width: 90vw;
+                /* Wide view on mobile */
+                margin: 0 0.8rem;
                 padding: 10px;
-            }
-
-            .marquee-viewport-vertical {
-                height: 450px;
             }
 
             .section-title.center {
@@ -150,8 +152,8 @@
                 Don't miss out on our exclusive deals
             </p>
 
-            <div class="marquee-viewport-vertical">
-                <div id="scrollingTrack" class="marquee-track-vertical">
+            <div class="marquee-viewport-horizontal">
+                <div id="scrollingTrack" class="marquee-track-horizontal">
                     <div class="offer-card" onclick="openModal('images/Offer1.png')"><img src="images/Offer1.png"
                             alt="Offer 1"></div>
                     <div class="offer-card" onclick="openModal('images/Offer2.png')"><img src="images/Offer2.png"
