@@ -2,36 +2,18 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Da Aloo | About Us</title>
-
-    <!-- Fonts -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Da Aloo </title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@400;500;600;700;800&family=Paytone+One&family=Poppins:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- About page specific CSS -->
     <style>
-        /* Keep all the inline CSS from the original about.html */
-        :root {
-            --feature-bg: white;
-            --feature-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            --visit-bg: #fff8cc;
-            --visit-border: 1px solid #ffe066;
-            --visit-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            --visit-color: #d4a100;
-        }
-
-        /* Hero Character Image */
+        /* Character image container - larger size */
         .character-container {
             position: relative;
             width: 280px;
@@ -40,7 +22,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.3s ease;
         }
 
         .character-img {
@@ -48,14 +29,9 @@
             height: 100%;
             object-fit: contain;
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-            transition: transform 0.3s ease;
         }
 
-        .character-container:hover .character-img {
-            transform: scale(1.05);
-        }
-
-        /* Hero Layout and Typography */
+        /* Updated hero layout with reduced gap */
         .hero-combined-box {
             display: flex;
             flex-direction: column;
@@ -83,77 +59,21 @@
             letter-spacing: 1.5px;
         }
 
-        /* Story Section Typography */
+        /* Updated typography for body text */
         .story-section p {
             font-family: 'Montserrat', sans-serif;
             font-weight: 500;
             line-height: 1.7;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
         }
 
-        .story-content {
-            text-align: justify;
-            max-width: 800px;
-            margin: 0 auto;
+        .features-grid h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
         }
 
         /* Reduce padding in about-hero section */
         .about-hero {
             padding: 5px 10px;
-        }
-
-        /* Features Grid */
-        .features-wrapper {
-            padding: 40px 0;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .feature-item {
-            background: var(--feature-bg);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: var(--feature-shadow);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .feature-item h3 {
-            margin: 0;
-            font-size: 1.1rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-
-        /* Visit Us Section */
-        .visit-us-wrapper {
-            padding: 50px 0;
-            text-align: center;
-        }
-
-        .visit-link-box {
-            display: inline-block;
-            padding: 18px 25px;
-            border-radius: 12px;
-            background: var(--visit-bg);
-            border: var(--visit-border);
-            box-shadow: var(--visit-shadow);
-        }
-
-        .visit-link {
-            text-decoration: none;
-            font-size: 1.15rem;
-            color: var(--visit-color);
-            font-weight: 700;
         }
 
         /* Mobile responsiveness */
@@ -182,36 +102,55 @@
                 padding: 0 10px;
             }
         }
+
+        /* Hover effect for interactivity */
+        .character-container:hover .character-img {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        .character-img {
+            transition: transform 0.3s ease;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Site Header -->
     <header class="site-header">
         <div class="container">
             <div class="header-content">
+                <!-- Logo and Tagline Section -->
                 <div class="logo-section">
                     <div class="logo-container">
                         <img src="images/logo.png" alt="Da Aloo Logo" class="main-logo">
                         <div class="tagline">"Where Hunger Comes to An End"</div>
                     </div>
+
+                    <!-- Main Navigation -->
                     <nav class="site-nav">
                         <a href="index.html" class="nav-link">Menu</a>
                         <a href="offers.html" class="nav-link">Offers</a>
-                        <a href="about.html" class="nav-link active">About</a>
+                        <a href="about.html" class="nav-link">About</a>
+
                     </nav>
                 </div>
             </div>
-        </div>
     </header>
 
+    <!-- Main Content -->
     <main>
+        <!-- Hero Section with Combined Box -->
         <section class="about-hero">
             <div class="container">
                 <div class="hero-combined-box">
                     <div class="hero-content-wrapper">
+                        <!-- Character image without background -->
                         <div class="character-container">
                             <img src="images/namaste character.jpg" alt="Da Aloo Character" class="character-img">
                         </div>
+
+                        <!-- Text Content positioned directly below the character -->
                         <div class="hero-text-content">
                             <h1 class="hero-title">About Us</h1>
                         </div>
@@ -220,75 +159,92 @@
             </div>
         </section>
 
+        <!-- Story Section -->
         <section class="container story-section">
-            <div class="story-content">
-                <p>Since 2021, <strong>Da Aloo</strong> is on a mission to serve incredible food the right way, with
-                    fresh ingredients, strong ethics, and a whole lot of love.</p>
+            <div style="text-align: justify; max-width: 800px; margin: 0 auto;">
+                <p style="margin-bottom: 20px; font-size: 1.1rem;">Since 2021, <strong>Da Aloo</strong> is on a mission
+                    to serve incredible food the right way, with fresh
+                    ingredients, strong ethics, and a whole lot of love.
+                </p>
 
-                <p>Our potatoes, freshly cut with the skin intact, deliver that perfect blend of <em>crispiness on the
-                        outside</em> and <em>tenderness on the inside</em> that keeps our customers coming back for
-                    more.</p>
+                <p style="margin-bottom: 20px; font-size: 1.1rem;">Our potatoes, freshly cut with the skin intact,
+                    deliver that perfect blend of <em>crispiness on the outside</em> and <em>tenderness on the
+                        inside</em> that keeps our customers coming back for more.</p>
 
-                <p>Savor the praise-worthy flavors with our signature dishes like <strong>Pizza Ball</strong>,
-                    <strong>Battered Fries</strong>, <strong>Cheesy Spiral</strong>, <strong>Cheesy Fries</strong>, and
-                    loaded favorites like <strong>Butter Chicken Fries</strong> and <strong>Buff Sausage Fries</strong>.
-                    Explore the khaja items like <strong>Katti Roll</strong>, <strong>Keema Noodles</strong>,
-                    <strong>Burgers</strong> and <strong>Mo:Mo</strong>, that's winning hearts!</p>
+                <p style="font-size: 1.1rem;">Savor the praise-worthy flavors with our signature dishes like
+                    <strong>Pizza Ball</strong>, <strong>Battered Fries</strong>, <strong>Cheesy Spiral</strong>,
+                    <strong>Cheesy Fries</strong>, and loaded favorites like <strong>Butter Chicken Fries</strong> and
+                    <strong>Buff Sausage Fries</strong>. Explore the khaja items like <strong>Katti Roll</strong>,
+                    <strong>Keema Noodles</strong>, <strong>Burgers</strong> and <strong>Mo:Mo</strong>, that's winning
+                    hearts!
+                </p>
             </div>
 
-            <div class="features-wrapper">
+            <!-- Features Grid -->
+            <div style="padding: 40px 0;">
                 <h2 class="section-title">Why Choose Da Aloo?</h2>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <div class="feature-icon">🌱</div>
-                        <h3>Fresh Ingredients</h3>
+                <div class="features-grid"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div
+                        style="background: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                        <div style="font-size: 2.5rem; margin-bottom: 10px;">🌱</div>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Fresh Ingredients</h3>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">⚡</div>
-                        <h3>Fast Service</h3>
+                    <div
+                        style="background: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                        <div style="font-size: 2.5rem; margin-bottom: 10px;">⚡</div>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Fast Service</h3>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">💰</div>
-                        <h3>Great Value</h3>
+                    <div
+                        style="background: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                        <div style="font-size: 2.5rem; margin-bottom: 10px;">💰</div>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Great Value</h3>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">❤️</div>
-                        <h3>Made with Love</h3>
+                    <div
+                        style="background: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                        <div style="font-size: 2.5rem; margin-bottom: 10px;">❤️</div>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Made with Love</h3>
                     </div>
                 </div>
             </div>
 
-            <div class="features-wrapper">
+            <!-- Google Reviews Section - Now using SociableKit widget -->
+            <div style="padding: 40px 0;">
                 <h2 class="section-title">Customer Reviews</h2>
                 <div class='sk-ww-google-reviews' data-embed-id='25627991'></div>
                 <script src='https://widgets.sociablekit.com/google-reviews/widget.js' defer></script>
             </div>
         </section>
 
-        <div class="visit-us-wrapper">
-            <h2 class="section-title" style="font-size: 2rem;">Visit Us</h2>
-            <div class="visit-link-box">
+        <!-- Visit Us Section -->
+        <div style="padding: 50px 0; text-align: center;">
+            <h2 class="section-title" style="font-size: 2rem; margin-bottom: 15px;">Visit Us</h2>
+            <div
+                style="display: inline-block; padding: 18px 25px; border-radius: 12px; background: #fff8cc; border: 1px solid #ffe066; box-shadow: 0 3px 10px rgba(0,0,0,0.08);">
                 <a href="https://www.google.com/maps/dir/?api=1&destination=Da Aloo, Lalitpur" target="_blank"
-                    class="visit-link">
+                    style="text-decoration: none; font-size: 1.15rem; color: #d4a100; font-weight: 700;">
                     📍 Get Directions to Natole, Lalitpur
                 </a>
             </div>
         </div>
     </main>
 
+    <!-- Site Footer -->
     <footer class="site-footer">
         <div class="container">
-            <p>© <span id="currentYear"></span> Da Aloo. All rights reserved.</p>
+            <p>&copy; <span id="currentYear"></span> Da Aloo. All rights reserved.</p>
         </div>
     </footer>
 
-    <a class="floating-whatsapp" href="tel:+9779847695529">
+    <a class="floating-whatsapp" href="tel:+9779847375984">
         <i class="fas fa-phone-alt"></i> Call Now
     </a>
 
     <script>
+        // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
+
 
 </html>

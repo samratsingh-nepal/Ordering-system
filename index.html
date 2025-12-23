@@ -2,26 +2,19 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Da Aloo - Menu</title>
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Stylesheets - Keep original structure -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- Keep EXACTLY the same HTML structure as before -->
     <header class="site-header">
         <div class="container">
             <div class="header-content">
@@ -34,6 +27,7 @@
                         <a href="index.html" class="nav-link">Menu</a>
                         <a href="offers.html" class="nav-link">Offers</a>
                         <a href="about.html" class="nav-link">About</a>
+
                     </nav>
                 </div>
             </div>
@@ -76,12 +70,15 @@
                 <span class="close-cart" id="closeCart">&times;</span>
             </div>
             <div class="cart-items" id="cartItems">
+                <!-- Items injected via JS -->
                 <div class="empty-cart-message" id="emptyCartMessage">
                     <i class="fas fa-shopping-cart"></i>
                     <p>Your cart is empty</p>
                 </div>
             </div>
-            <div class="cart-total" id="cartTotal">Total: Rs 0</div>
+            <div class="cart-total" id="cartTotal">
+                Total: Rs 0
+            </div>
             <div class="cart-actions">
                 <button class="clear-cart-btn" id="clearCart">Clear Cart</button>
                 <button class="checkout-btn" id="checkoutBtn">Checkout on WhatsApp</button>
@@ -89,19 +86,20 @@
         </div>
     </div>
 
-    <!-- Item Customization Modal -->
+    <!-- Item Customization Modal (Used ONLY for Variants like Mo:Mo types) -->
     <div class="customization-modal" id="customizationModal">
         <div class="customization-modal-content">
             <div class="customization-header">
                 <h3 id="customizationItemName">Select Variant</h3>
                 <span class="close-customization" id="closeCustomization">&times;</span>
             </div>
-            <div class="customization-body" id="customizationBody"></div>
+            <div class="customization-body" id="customizationBody">
+                <!-- Content will be populated dynamically -->
+            </div>
             <div class="customization-actions">
                 <button class="cancel-customization" id="cancelCustomization">Cancel</button>
-                <button class="add-to-cart-custom" id="addToCartCustom">
-                    Add to Cart - Rs <span id="customTotalPrice">0</span>
-                </button>
+                <button class="add-to-cart-custom" id="addToCartCustom">Add to Cart - Rs <span
+                        id="customTotalPrice">0</span></button>
             </div>
         </div>
     </div>
@@ -112,7 +110,7 @@
         </div>
     </footer>
 
-    <a class="floating-whatsapp" href="tel:+9779847695529">
+    <a class="floating-whatsapp" href="tel:+9779847375984">
         <i class="fas fa-phone-alt"></i> Call Now
     </a>
 
@@ -123,9 +121,8 @@
         </div>
     </div>
 
-    <!-- Keep ALL original JavaScript and CSS in the HTML file as before -->
     <script>
-        // Enhanced Menu data with variants and extras - KEEP EXACTLY AS IS
+        // Enhanced Menu data with variants and extras
         const MENU = {
             "Aloo Fries": [
                 { "name": "Aloo Fries Medium", "price": 70 },
@@ -566,6 +563,7 @@
                     saveCart();
                     updateCartBadge();
                     updateCartDisplay();
+
                 }
             });
 
@@ -599,12 +597,14 @@
                     const name = button.getAttribute('data-name');
                     const price = button.getAttribute('data-price');
                     const hasVariants = button.getAttribute('data-has-variants') === 'true';
+                    // const hasExtras = button.getAttribute('data-has-extras') === 'true'; // Used internally
 
                     if (hasVariants) {
                         // Open modal ONLY for Variants (Mo:Mo)
                         openCustomizationModal(name, true, false);
                     } else {
                         // For items with extras (Burger/Roll) or simple items (Coke)
+                        // we find the item data to see if it has potential availableExtras
                         const itemData = findMenuItem(name);
                         const availableExtras = itemData.extras || [];
 
@@ -629,6 +629,7 @@
                 if (!currentCustomizationItem) return;
 
                 const selectedVariant = document.querySelector('input[name="variant"]:checked');
+                // Extras are no longer in this modal
 
                 let variant = null;
                 if (selectedVariant) {
@@ -683,6 +684,8 @@
                 basePrice = item.price;
             }
 
+            // Note: Extras section removed from here as they are now in the cart
+
             body.innerHTML = html;
             totalPrice.textContent = basePrice;
 
@@ -730,11 +733,15 @@
                 name: name,
                 basePrice: price,
                 variant: variant,
-                extras: extras,
-                availableExtras: availableExtras,
+                extras: extras, // Currently selected extras
+                availableExtras: availableExtras, // Potential extras
                 quantity: 1,
                 totalPrice: price + extras.reduce((sum, extra) => sum + extra.price, 0)
             };
+
+            // If item has potential extras (availableExtras), we DO NOT merge them automatically
+            // to allow users to have one Katti Roll with Egg and one without.
+            // If no available extras (e.g., Coke), we can merge.
 
             let existingIndex = -1;
 
@@ -810,6 +817,7 @@
                 if (item.availableExtras && item.availableExtras.length > 0) {
                     extrasHTML += '<div class="cart-extras-options">';
 
+                    // Group extras by their group (for radio buttons)
                     const groupedExtras = {};
                     item.availableExtras.forEach(extra => {
                         const group = extra.group || 'default';
@@ -819,6 +827,7 @@
                         groupedExtras[group].push(extra);
                     });
 
+                    // Render each group
                     Object.values(groupedExtras).forEach(extrasGroup => {
                         const isRadioGroup = extrasGroup[0].type === 'radio';
                         const groupName = extrasGroup[0].group || 'extras';
@@ -826,6 +835,7 @@
                         extrasHTML += `<div class="extras-group ${isRadioGroup ? 'radio-group' : ''}">`;
 
                         extrasGroup.forEach(opt => {
+                            // Check if this extra is already added
                             const isChecked = item.extras.some(e => e.name === opt.name);
 
                             if (isRadioGroup) {
@@ -893,13 +903,16 @@
                 const isChecked = e.target.checked;
 
                 if (isChecked) {
+                    // Add extra if not present
                     if (!cart[index].extras.some(extra => extra.name === name)) {
                         cart[index].extras.push({ name: name, price: price });
                     }
                 } else {
+                    // Remove extra
                     cart[index].extras = cart[index].extras.filter(extra => extra.name !== name);
                 }
 
+                // Recalculate price: (Base + Sum of Extras) * Quantity
                 const extrasTotal = cart[index].extras.reduce((sum, extra) => sum + extra.price, 0);
                 cart[index].totalPrice = (cart[index].basePrice + extrasTotal) * cart[index].quantity;
 
@@ -913,18 +926,22 @@
                 const price = parseInt(e.target.getAttribute('data-price'));
                 const group = e.target.getAttribute('data-group');
 
+                // Remove all extras from the same radio group
                 const item = cart[index];
                 const extrasInGroup = item.availableExtras.filter(extra => extra.group === group);
 
+                // Clear all extras from this group
                 item.extras = item.extras.filter(extra => {
                     const extraData = item.availableExtras.find(e => e.name === extra.name);
                     return !extraData || extraData.group !== group;
                 });
 
+                // Add the selected radio extra
                 if (!item.extras.some(extra => extra.name === name)) {
                     item.extras.push({ name: name, price: price });
                 }
 
+                // Recalculate price: (Base + Sum of Extras) * Quantity
                 const extrasTotal = item.extras.reduce((sum, extra) => sum + extra.price, 0);
                 item.totalPrice = (item.basePrice + extrasTotal) * item.quantity;
 
@@ -950,10 +967,11 @@
                         saveCart();
                         updateCartBadge();
                         updateCartDisplay();
-                        return;
+                        return; // Exit if item removed
                     }
                 }
 
+                // Recalculate price after quantity change
                 if (cart[index]) {
                     const extrasTotal = cart[index].extras.reduce((sum, extra) => sum + extra.price, 0);
                     cart[index].totalPrice = (cart[index].basePrice + extrasTotal) * cart[index].quantity;
@@ -978,10 +996,12 @@
             }
         }
 
+
         function sendOrderToWhatsApp() {
             let message = "My Order\n\n";
             message += "*Order Details:*\n";
 
+            // Add date and time in simple format
             const now = new Date();
             const date = now.toLocaleDateString();
             const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -1006,7 +1026,7 @@
             message += "Please confirm this order. Thank you!";
 
             const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/9779847695529?text=${encodedMessage}`;
+            const whatsappUrl = `https://wa.me/9779847375984?text=${encodedMessage}`;
 
             window.open(whatsappUrl, '_blank');
 
@@ -1016,7 +1036,6 @@
             updateCartDisplay();
             document.getElementById('cartModal').style.display = 'none';
         }
-
         // Fallback for missing images
         function handleTabImageError(img, categoryName) {
             img.parentElement.innerHTML = `<div style="font-size:1.5rem;color:#666;">🍽️</div>`;
@@ -1037,7 +1056,7 @@
     </script>
 
     <style>
-        /* Keep ALL CSS styles exactly as they were in the original */
+        /* All CSS styles from previous versions */
         .menu-section {
             padding: 1rem 0;
         }
@@ -1096,6 +1115,7 @@
         }
 
         /* Cart Container */
+        /* Cart container */
         .cart-container {
             position: fixed;
             top: 120px;
@@ -1117,33 +1137,42 @@
             cursor: pointer;
             position: relative;
             font-size: 1.7rem;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25),
+
+            box-shadow:
+                0 6px 20px rgba(0, 0, 0, 0.25),
                 0 0 0 6px rgba(255, 235, 59, 0.35);
+
             transition: 0.25s ease;
             animation: cartPulse 2s infinite;
         }
 
+        /* Hover */
         .cart-icon:hover {
             transform: scale(1.12);
         }
 
+        /* Cart pulse */
         @keyframes cartPulse {
             0% {
-                box-shadow: 0 0 0 0 rgba(255, 235, 59, 0.6),
+                box-shadow:
+                    0 0 0 0 rgba(255, 235, 59, 0.6),
                     0 6px 20px rgba(0, 0, 0, 0.25);
             }
 
             70% {
-                box-shadow: 0 0 0 12px rgba(255, 235, 59, 0),
+                box-shadow:
+                    0 0 0 12px rgba(255, 235, 59, 0),
                     0 6px 20px rgba(0, 0, 0, 0.25);
             }
 
             100% {
-                box-shadow: 0 0 0 0 rgba(255, 235, 59, 0),
+                box-shadow:
+                    0 0 0 0 rgba(255, 235, 59, 0),
                     0 6px 20px rgba(0, 0, 0, 0.25);
             }
         }
 
+        /* Badge */
         .cart-badge {
             position: absolute;
             top: -8px;
@@ -1161,6 +1190,7 @@
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
         }
 
+        /* Badge bounce */
         .cart-badge.bounce {
             animation: badgeBounce 0.4s ease;
         }
@@ -2022,6 +2052,8 @@
             }
         }
     </style>
+
 </body>
+
 
 </html>
