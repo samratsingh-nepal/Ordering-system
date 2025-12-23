@@ -48,32 +48,36 @@
         }
 
         .offer-card {
-            background: white;
-            border-radius: 20px;
-            margin: 0 1rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            width: 600px;
-            height: 400px;
-            padding: 20px;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease;
-            box-sizing: border-box;
-        }
+    background: white;
+    border-radius: 20px;
+    margin: 0 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    width: 600px;
+    height: 400px;
+    /* Remove padding to let the image reach the edges, 
+       or keep it if you want a white border frame */
+    padding: 0; 
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+    overflow: hidden; /* Ensures image doesn't bleed past rounded corners */
+}
 
         .offer-card:hover {
             transform: translateY(-5px);
         }
 
         .offer-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 10px;
-            display: block;
-        }
+    width: 100%;
+    height: 100%;
+    /* 'cover' makes it fill the box completely. 
+       Use 'contain' if you must see the entire flyer without any cropping. */
+    object-fit: cover; 
+    display: block;
+}
 
         @keyframes scrollHorizontal {
             0% {
