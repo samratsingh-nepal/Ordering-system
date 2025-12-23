@@ -8,51 +8,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* --- Layout & Typography --- */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: #fcfcfc;
-        }
-
-        .offers-section {
-            padding: 0.5rem 0;
-            overflow: hidden;
-        }
-
-        .compact-header {
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .compact-header h1 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 3rem;
-            margin: 0;
-            letter-spacing: 1px;
-            line-height: 1;
-        }
-
-        .compact-header p {
-            margin: 0.2rem 0 0.5rem 0;
-            font-size: 1rem;
-            color: #555;
-        }
-
         /* --- Vertical Marquee Slider --- */
         .marquee-viewport-vertical {
-            height: 650px;
-            /* Tall enough for wide images */
+            height: 600px;
             width: 100%;
             max-width: 900px;
-            /* Increased desktop spread */
             margin: 0 auto;
             overflow: hidden;
             display: flex;
@@ -65,11 +31,11 @@
             display: flex;
             flex-direction: column;
             height: max-content;
-            animation: scrollVertical 30s linear infinite;
-            /* Slower for readability */
+            /* Faster movement (reduced from 30s to 18s) */
+            animation: scrollVertical 18s linear infinite;
         }
 
-        /* The Magic: Pause when user interacts */
+        /* Pause when user interacts */
         .marquee-viewport-vertical:hover .marquee-track-vertical,
         .marquee-viewport-vertical:active .marquee-track-vertical {
             animation-play-state: paused !important;
@@ -81,7 +47,6 @@
             margin: 1.5rem 0;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             width: 750px;
-            /* Ultra wide on desktop */
             padding: 15px;
             transition: transform 0.3s ease;
         }
@@ -137,7 +102,7 @@
             cursor: pointer;
         }
 
-        /* --- Responsiveness --- */
+        /* --- Mobile Tweaks --- */
         @media (max-width: 768px) {
             .offer-card {
                 width: 92vw;
@@ -146,11 +111,11 @@
             }
 
             .marquee-viewport-vertical {
-                height: 500px;
+                height: 450px;
             }
 
-            .compact-header h1 {
-                font-size: 2.5rem;
+            .section-title.center {
+                font-size: 2.5rem !important;
             }
         }
     </style>
@@ -176,11 +141,14 @@
     </header>
 
     <main>
-        <section class="offers-section">
-            <div class="compact-header">
-                <h1>SPECIAL OFFERS</h1>
-                <p>Click any offer to view full screen</p>
-            </div>
+        <section style="padding: 0.5rem 0; overflow: hidden;">
+            <h1 class="section-title center"
+                style="text-align: center; font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px; font-size: 2.8rem; margin: 0;">
+                Special Offers</h1>
+            <p class="center"
+                style="text-align: center; margin-bottom: 0.5rem; font-size: 1rem; font-family: 'Montserrat', sans-serif;">
+                Don't miss out on our exclusive deals
+            </p>
 
             <div class="marquee-viewport-vertical">
                 <div id="scrollingTrack" class="marquee-track-vertical">
@@ -192,7 +160,6 @@
                             alt="Offer 3"></div>
                     <div class="offer-card" onclick="openModal('images/Offer4.png')"><img src="images/Offer4.png"
                             alt="Offer 4"></div>
-
                     <div class="offer-card" onclick="openModal('images/Offer1.png')"><img src="images/Offer1.png"
                             alt="Offer 1"></div>
                     <div class="offer-card" onclick="openModal('images/Offer2.png')"><img src="images/Offer2.png"
@@ -203,8 +170,41 @@
                             alt="Offer 4"></div>
                 </div>
             </div>
+
+            <div style="background: var(--primary, #ffc107); margin-top: 3rem; width: 100%;">
+                <div class="container">
+                    <div class="center" style="padding: 2rem 0; text-align: center;">
+                        <div
+                            style="color: white; padding: 2rem; border-radius: 15px; max-width: 600px; margin: 0 auto;">
+                            <h2
+                                style="margin-bottom: 1rem; color: black; font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px; font-size: 2.5rem;">
+                                Daily Specials
+                            </h2>
+                            <p style="margin-bottom: 1.5rem; color: black; font-family: 'Montserrat', sans-serif;">
+                                Check back often for new deals and seasonal promotions
+                            </p>
+                            <a href="https://wa.me/9779847375984?text=Hi, what are your current offers?"
+                                class="order-now-btn btn-outline" target="_blank"
+                                style="border: 2px solid black; padding: 10px 20px; text-decoration: none; color: black; font-weight: bold; font-family: 'Montserrat', sans-serif;">
+                                Inquire About Offers
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
+
+    <footer class="site-footer" style="padding: 2rem 0; text-align: center; background: #333; color: white;">
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Da Aloo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <a class="floating-whatsapp" href="tel:+9779847375984"
+        style="position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; padding: 15px; border-radius: 50px; text-decoration: none; z-index: 100;">
+        <i class="fas fa-phone-alt"></i> Call Now
+    </a>
 
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="close-modal">&times;</span>
@@ -212,24 +212,14 @@
     </div>
 
     <script>
-        // Modal Handlers
         function openModal(imgSrc) {
-            const modal = document.getElementById("imageModal");
-            const modalImg = document.getElementById("fullImage");
-            modal.style.display = "flex";
-            modalImg.src = imgSrc;
-            // The scroll is naturally paused because the mouse is no longer on the track
+            document.getElementById("imageModal").style.display = "flex";
+            document.getElementById("fullImage").src = imgSrc;
         }
-
         function closeModal() {
             document.getElementById("imageModal").style.display = "none";
         }
-
-        // Auto-update Footer Year (if element exists)
-        window.onload = function () {
-            const yearSpan = document.getElementById('currentYear');
-            if (yearSpan) yearSpan.textContent = new Date().getFullYear();
-        };
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
 
