@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -21,52 +21,53 @@
             display: flex;
             cursor: pointer;
             position: relative;
-            padding: 20px 0;
-            /* Vertical breathing room */
+            padding: 30px 0;
+            background: #f9f9f9;
+            /* Subtle background for the slider area */
         }
 
         .marquee-track-horizontal {
             display: flex;
             flex-direction: row;
-            /* Changed from column to row */
             width: max-content;
-            /* Ensure track is as wide as all images */
-            /* Adjusted time to 20s for smooth horizontal flow */
-            animation: scrollHorizontal 20s linear infinite;
+            /* Ultra fast horizontal flow (10s) */
+            animation: scrollHorizontal 10s linear infinite;
         }
 
-        /* Pause when user interacts */
-        .marquee-viewport-horizontal:hover .marquee-track-horizontal,
-        .marquee-viewport-horizontal:active .marquee-track-horizontal {
+        .marquee-viewport-horizontal:hover .marquee-track-horizontal {
             animation-play-state: paused !important;
         }
 
         .offer-card {
             background: white;
             border-radius: 20px;
-            margin: 0 1.5rem;
-            /* Horizontal margin */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            width: 750px;
-            /* Kept your wide desktop width */
+            margin: 0 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            width: 600px;
+            /* Adjusted width for faster visual flow */
+            height: 400px;
+            /* Defined height to keep everything uniform */
             padding: 15px;
-            transition: transform 0.3s ease;
             flex-shrink: 0;
-            /* Prevents images from squishing */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
         }
 
         .offer-card:hover {
-            transform: scale(1.01);
+            transform: translateY(-5px);
         }
 
         .offer-card img {
             width: 100%;
-            height: auto;
-            border-radius: 12px;
+            height: 100%;
+            /* This ensures the image fits inside the box according to its own proportions */
+            object-fit: contain;
+            border-radius: 10px;
             display: block;
         }
 
-        /* Updated to Translate X for Right to Left movement */
         @keyframes scrollHorizontal {
             0% {
                 transform: translateX(0);
@@ -86,16 +87,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
+            background-color: rgba(0, 0, 0, 0.9);
             justify-content: center;
             align-items: center;
-            cursor: zoom-out;
         }
 
         .modal-content {
-            max-width: 95%;
-            max-height: 90vh;
+            max-width: 90%;
+            max-height: 80vh;
             border-radius: 10px;
+            object-fit: contain;
         }
 
         .close-modal {
@@ -110,14 +111,14 @@
         /* --- Mobile Tweaks --- */
         @media (max-width: 768px) {
             .offer-card {
-                width: 90vw;
-                /* Wide view on mobile */
-                margin: 0 0.8rem;
-                padding: 10px;
+                width: 85vw;
+                height: 300px;
+                /* Shorter height for mobile screens */
+                margin: 0 0.5rem;
             }
 
             .section-title.center {
-                font-size: 2.5rem !important;
+                font-size: 2.2rem !important;
             }
         }
     </style>
@@ -143,13 +144,13 @@
     </header>
 
     <main>
-        <section style="padding: 0.5rem 0; overflow: hidden;">
+        <section style="padding: 1rem 0; overflow: hidden;">
             <h1 class="section-title center"
                 style="text-align: center; font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px; font-size: 2.8rem; margin: 0;">
                 Special Offers</h1>
             <p class="center"
-                style="text-align: center; margin-bottom: 0.5rem; font-size: 1rem; font-family: 'Montserrat', sans-serif;">
-                Don't miss out on our exclusive deals
+                style="text-align: center; margin-bottom: 1rem; font-size: 1rem; font-family: 'Montserrat', sans-serif;">
+                Click to expand any offer
             </p>
 
             <div class="marquee-viewport-horizontal">
@@ -173,23 +174,19 @@
                 </div>
             </div>
 
-            <div style="background: var(--primary, #ffc107); margin-top: 3rem; width: 100%;">
+            <div style="background: var(--primary, #ffc107); margin-top: 2rem; width: 100%;">
                 <div class="container">
                     <div class="center" style="padding: 2rem 0; text-align: center;">
                         <div
-                            style="color: white; padding: 2rem; border-radius: 15px; max-width: 600px; margin: 0 auto;">
+                            style="color: white; padding: 1rem; border-radius: 15px; max-width: 600px; margin: 0 auto;">
                             <h2
-                                style="margin-bottom: 1rem; color: black; font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px; font-size: 2.5rem;">
-                                Daily Specials
-                            </h2>
-                            <p style="margin-bottom: 1.5rem; color: black; font-family: 'Montserrat', sans-serif;">
-                                Check back often for new deals and seasonal promotions
-                            </p>
-                            <a href="https://wa.me/9779847375984?text=Hi, what are your current offers?"
-                                class="order-now-btn btn-outline" target="_blank"
-                                style="border: 2px solid black; padding: 10px 20px; text-decoration: none; color: black; font-weight: bold; font-family: 'Montserrat', sans-serif;">
-                                Inquire About Offers
-                            </a>
+                                style="margin-bottom: 1rem; color: black; font-family: 'Bebas Neue', cursive; font-size: 2.2rem;">
+                                Daily Specials</h2>
+                            <p style="margin-bottom: 1.5rem; color: black; font-family: 'Montserrat', sans-serif;">New
+                                deals added every week!</p>
+                            <a href="https://wa.me/9779847375984" class="order-now-btn" target="_blank"
+                                style="border: 2px solid black; padding: 10px 25px; text-decoration: none; color: black; font-weight: bold; border-radius: 5px;">Inquire
+                                on WhatsApp</a>
                         </div>
                     </div>
                 </div>
@@ -197,16 +194,9 @@
         </section>
     </main>
 
-    <footer class="site-footer" style="padding: 2rem 0; text-align: center; background: #333; color: white;">
-        <div class="container">
-            <p>&copy; <span id="currentYear"></span> Da Aloo. All rights reserved.</p>
-        </div>
+    <footer style="padding: 1.5rem 0; text-align: center; background: #333; color: white;">
+        <p>&copy; <span id="currentYear"></span> Da Aloo. All rights reserved.</p>
     </footer>
-
-    <a class="floating-whatsapp" href="tel:+9779847375984"
-        style="position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; padding: 15px; border-radius: 50px; text-decoration: none; z-index: 100;">
-        <i class="fas fa-phone-alt"></i> Call Now
-    </a>
 
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="close-modal">&times;</span>
